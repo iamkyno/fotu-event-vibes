@@ -92,8 +92,8 @@ const About = () => {
                     />
                   </div>
                   <div className="md:col-span-2">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4">Thami Nyawo</h3>
-                    <p className="text-lg text-yellow-500 font-semibold mb-4">Formally known as Thami the Unknown</p>
+                    <h3 className="text-2xl font-bold text-gray-800 mb-4">Thami The Unknown</h3>
+                    <p className="text-lg text-yellow-500 font-semibold mb-4">Formally known as Thami Nyawo</p>
                     <p className="text-gray-600 leading-relaxed mb-4">
                       A professional DJ/Producer who, when not gigging, plans and coordinates events under his company F.O.T.U PTY LTD.
                     </p>

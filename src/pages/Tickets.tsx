@@ -15,52 +15,19 @@ const Tickets = () => {
   const events = [
     {
       id: 1,
-      date: '2 August 2025',
+      date: '5 July 2025',
       day: 'Saturday',
       time: '18:00 - 02:00',
-      venue: 'The BoneShed',
+      venue: 'The Werehouse',
       location: 'Durban',
       headliner: 'Da Capo',
       supporting: ['Enoo Napa', 'Local DJs'],
-      capacity: 500,
       ticketTypes: [
         { name: 'Early Bird', price: 'R150', available: true, description: 'Limited time offer' },
         { name: 'General Admission', price: 'R200', available: true, description: 'Standard entry' },
         { name: 'VIP Experience', price: 'R350', available: true, description: 'Includes drinks & backstage access' },
       ]
-    },
-    {
-      id: 2,
-      date: '6 September 2025',
-      day: 'Saturday',
-      time: '19:00 - 03:00',
-      venue: 'TBA',
-      location: 'Johannesburg',
-      headliner: 'Karyendasoul',
-      supporting: ['Que DJ', 'Local Talent'],
-      capacity: 400,
-      ticketTypes: [
-        { name: 'Early Bird', price: 'R180', available: true, description: 'Limited time offer' },
-        { name: 'General Admission', price: 'R250', available: true, description: 'Standard entry' },
-        { name: 'VIP Experience', price: 'R400', available: true, description: 'Premium experience' },
-      ]
-    },
-    {
-      id: 3,
-      date: '1 November 2025',
-      day: 'Saturday',
-      time: '18:00 - 02:00',
-      venue: 'The BoneShed',
-      location: 'Durban',
-      headliner: 'Kususa',
-      supporting: ['Rising Stars', 'F.O.T.U Residents'],
-      capacity: 500,
-      ticketTypes: [
-        { name: 'Early Bird', price: 'R160', available: true, description: 'Limited time offer' },
-        { name: 'General Admission', price: 'R220', available: true, description: 'Standard entry' },
-        { name: 'VIP Experience', price: 'R380', available: true, description: 'Full VIP treatment' },
-      ]
-    },
+    }
   ];
 
   return (
@@ -121,11 +88,7 @@ const Tickets = () => {
                           <MapPin className="w-5 h-5 text-yellow-400" />
                           <span>{event.venue}, {event.location}</span>
                         </div>
-                        
-                        <div className="flex items-center space-x-3 text-gray-300">
-                          <Users className="w-5 h-5 text-yellow-400" />
-                          <span>Capacity: {event.capacity} people</span>
-                        </div>
+
                       </div>
 
                       <div>

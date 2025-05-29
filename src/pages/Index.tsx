@@ -18,8 +18,8 @@ const Index = () => {
     // Toggle this in your backend
     eventData: {
       title: "F.O.T.U 2025",
-      date: "2 August 2025",
-      venue: "The BoneShed",
+      date: "5 July 2025",
+      venue: "The Werehouse",
       location: "Durban",
       description: "Join us for an unforgettable night of music and creativity. Pushing Passion With Purpose."
     }
@@ -27,9 +27,9 @@ const Index = () => {
 
   // Current active show
   const currentShow = {
-    date: '2 August 2025',
+    date: '5 July 2025',
     location: 'Durban',
-    venue: 'The BoneShed'
+    venue: 'The Werehouse'
   };
   useEffect(() => {
     scrollToTop();
@@ -66,14 +66,14 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/50" />
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">          
-          <img src="/uploads/FOTU-Logo.webp" alt="DJ setup" className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg object-fill" />
+          <img src="/uploads/FOTU-Logo.webp" alt="DJ setup" className="max-w-sm mx-auto hover:scale-102 transition-transform duration-300 shadow-lg object-fill" />
           
           <p className="text-2xl md:text-3xl text-yellow-400 mb-4 font-bold animate-fade-in delay-300">
             Friends of the Unknown
           </p>
           
           <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-500">
-            "Pushing Passion With Purpose" - An immersive event centered around anchoring the next generation of creatives & DJ/producers into the spotlight.
+          An immersive event centered around anchoring the next generation of creatives & DJ/producers into the spotlight.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in delay-700">
@@ -109,7 +109,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <p className="text-gray-600 text-lg leading-relaxed">
-                Thami Nyawo, formally known as Thami the Unknown, is a professional DJ/Producer. When he is not gigging, he also plans and coordinates events under his company FOTU PTY LTD.
+                Thami The Unknown, formally known as Thami Nyawo, is a professional DJ/Producer. When he is not gigging, he also plans and coordinates events under his company FOTU PTY LTD.
               </p>
               
               <p className="text-gray-600 text-lg leading-relaxed">
@@ -121,8 +121,8 @@ const Index = () => {
               </p>
               
               <Link to="/about">
-                <Button className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold">
-                  Learn More About Us
+                <Button className="bg-gradient-to-r mt-6 from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold">
+                  Learn More
                 </Button>
               </Link>
             </div>
@@ -237,10 +237,7 @@ const Index = () => {
       <footer className="bg-gray-800 py-12 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="mb-8">
-            <img src="/uploads/FOTU-Logo.webp" alt="F.O.T.U Logo" className="w-16 h-auto mx-auto mb-4" />
-            <h3 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-              F.O.T.U
-            </h3>
+            <img src="/uploads/FOTU-Logo.webp" alt="F.O.T.U Logo" className="w-20 h-auto mx-auto mb-4" />
           </div>
           
           <div className="mb-8">
