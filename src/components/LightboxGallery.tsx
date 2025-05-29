@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
@@ -20,7 +20,28 @@ interface LightboxGalleryProps {
 const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGalleryProps) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isOpen) return;
+      
+      if (e.key === 'Escape') {
+        onClose();
+      } else if (e.key === 'ArrowLeft') {
+        goToPrevious();
+      } else if (e.key === 'ArrowRight') {
+        goToNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen]);
+
+  if (!isOpen || images.length === 0) return null;
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
@@ -33,7 +54,7 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
   const currentImage = images[currentIndex];
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4" onClick={onClose}>
       {/* Close button */}
       <Button
         onClick={onClose}
@@ -47,7 +68,10 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
       {images.length > 1 && (
         <>
           <Button
-            onClick={goToPrevious}
+            onClick={(e) => {
+              e.stopPropagation();
+              goToPrevious();
+            }}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white"
             size="sm"
           >
@@ -55,7 +79,10 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
           </Button>
           
           <Button
-            onClick={goToNext}
+            onClick={(e) => {
+              e.stopPropagation();
+              goToNext();
+            }}
             className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white"
             size="sm"
           >
@@ -64,13 +91,15 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
         </>
       )}
 
-      {/* Main image */}
-      <div className="flex flex-col items-center max-w-full max-h-full">
-        <img 
-          src={currentImage.image} 
-          alt={currentImage.title}
-          className="max-w-full max-h-[80vh] object-contain rounded-lg"
-        />
+      {/* Main content */}
+      <div className="flex flex-col items-center max-w-full max-h-full" onClick={(e) => e.stopPropagation()}>
+        <div className="relative max-w-[90vw] max-h-[80vh]">
+          <img 
+            src={currentImage.image} 
+            alt={currentImage.title}
+            className="max-w-full max-h-full object-contain rounded-lg"
+          />
+        </div>
         
         {/* Image info */}
         <div className="mt-4 text-center text-white">
@@ -84,22 +113,27 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
 
       {/* Thumbnail navigation */}
       {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 max-w-full overflow-x-auto px-4">
-          {images.map((image, index) => (
-            <button
-              key={image.id}
-              onClick={() => setCurrentIndex(index)}
-              className={`flex-shrink-0 w-16 h-16 rounded border-2 transition-all duration-300 ${
-                index === currentIndex ? 'border-yellow-400' : 'border-gray-600 hover:border-gray-400'
-              }`}
-            >
-              <img 
-                src={image.image} 
-                alt={image.title}
-                className="w-full h-full object-cover rounded"
-              />
-            </button>
-          ))}
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 max-w-[90vw] overflow-x-auto px-4">
+          <div className="flex space-x-2">
+            {images.map((image, index) => (
+              <button
+                key={image.id}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setCurrentIndex(index);
+                }}
+                className={`flex-shrink-0 w-16 h-16 rounded border-2 transition-all duration-300 ${
+                  index === currentIndex ? 'border-yellow-400' : 'border-gray-600 hover:border-gray-400'
+                }`}
+              >
+                <img 
+                  src={image.image} 
+                  alt={image.title}
+                  className="w-full h-full object-cover rounded"
+                />
+              </button>
+            ))}
+          </div>
         </div>
       )}
     </div>

@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Ticket, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -13,6 +12,9 @@ import { scrollToTop } from '@/utils/scrollToTop';
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const featuredProducts = products.slice(0, 4);
+  
+  // Create extended array for seamless looping
+  const extendedProducts = [...featuredProducts, ...featuredProducts, ...featuredProducts];
 
   // Event popup configuration - this would come from your backend
   const eventPopupConfig = {
@@ -63,20 +65,29 @@ const Index = () => {
       <Navigation />
       <EventPopup {...eventPopupConfig} />
       
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-50">
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-orange-500/10" />
+      {/* Hero Section with Background Image */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('/lovable-uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png')`
+          }}
+        />
+        
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/50" />
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">          
           <h1 className="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent animate-fade-in">
             F.O.T.U
           </h1>
           
-          <p className="text-2xl md:text-3xl text-yellow-500 mb-4 font-bold animate-fade-in delay-300">
+          <p className="text-2xl md:text-3xl text-yellow-400 mb-4 font-bold animate-fade-in delay-300">
             Friends of the Unknown
           </p>
           
-          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-500">
+          <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-500">
             "Pushing Passion With Purpose" - An immersive event centered around anchoring the next generation of creatives & DJ/producers into the spotlight.
           </p>
           
@@ -91,7 +102,7 @@ const Index = () => {
             
             <Button 
               variant="outline" 
-              className="border-yellow-400 text-yellow-500 hover:bg-yellow-400 hover:text-black px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300"
+              className="border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300"
             >
               <Play className="w-5 h-5 mr-2" />
               Watch Recap
@@ -153,7 +164,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Merch Slider Section */}
+      {/* Merch Slider Section with Looping */}
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="flex justify-between items-center mb-12">
@@ -176,10 +187,13 @@ const Index = () => {
             <div className="overflow-hidden rounded-xl">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * (100 / 3)}%)` }}
+                style={{ 
+                  transform: `translateX(-${(currentSlide + featuredProducts.length) * (100 / 3)}%)`,
+                  width: `${extendedProducts.length * (100 / 3)}%`
+                }}
               >
-                {featuredProducts.map((product) => (
-                  <div key={product.id} className="w-1/3 md:w-1/3 lg:w-1/3 flex-shrink-0 px-2">
+                {extendedProducts.map((product, index) => (
+                  <div key={`${product.id}-${index}`} className="w-full md:w-1/3 flex-shrink-0 px-2">
                     <div className="block md:hidden">
                       <div 
                         className="flex transition-transform duration-500 ease-in-out"

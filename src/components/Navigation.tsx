@@ -19,16 +19,13 @@ const Navigation = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-yellow-500/20 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
+          {/* Logo only */}
+          <Link to="/" className="flex items-center group">
             <img 
               src="/lovable-uploads/b398b06d-500d-4e2e-bab2-a1f4ed0e96e9.png" 
               alt="F.O.T.U Logo" 
               className="w-12 h-12 transform group-hover:scale-110 transition-transform duration-300"
             />
-            <span className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
-              F.O.T.U
-            </span>
           </Link>
 
           {/* Desktop Menu */}
