@@ -39,10 +39,10 @@ const ProductCard = ({
       </div>
       
       <div className="p-4 space-y-3 bg-stone-50">
-        <h3 className="text-lg font-bold text-white group-hover:text-yellow-400 transition-colors">
+        <h3 className="text-lg font-bold transition-colors text-gray-950">
           {product.name}
         </h3>
-        <p className="text-gray-400 text-sm line-clamp-2">
+        <p className="text-sm line-clamp-2 text-slate-900">
           {product.description}
         </p>
         
