@@ -66,9 +66,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/50" />
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">          
-          <h1 className="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent animate-fade-in">
-            F.O.T.U
-          </h1>
+          <img src="/uploads/FOTU-Logo.webp" alt="DJ setup" className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg object-fill" />
           
           <p className="text-2xl md:text-3xl text-yellow-400 mb-4 font-bold animate-fade-in delay-300">
             Friends of the Unknown
@@ -239,7 +237,7 @@ const Index = () => {
       <footer className="bg-gray-800 py-12 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="mb-8">
-            <img src="/uploads/b398b06d-500d-4e2e-bab2-a1f4ed0e96e9.png" alt="F.O.T.U Logo" className="w-16 h-auto mx-auto mb-4" />
+            <img src="/uploads/FOTU-Logo.webp" alt="F.O.T.U Logo" className="w-16 h-auto mx-auto mb-4" />
             <h3 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
               F.O.T.U
             </h3>
@@ -247,12 +245,12 @@ const Index = () => {
           
           <div className="mb-8">
             <p className="text-gray-400 mb-2">Contact: 084 748 2489</p>
-            <p className="text-gray-400">Email: Thaminyawo11@gmail.com</p>
+            <p className="text-gray-400">Email: enquires@fotu.co.za</p>
           </div>
           
           <div className="border-t border-gray-700 pt-8">
             <p className="text-gray-500">
-              © 2025 F.O.T.U PTY LTD. All rights reserved. "Pushing Passion With Purpose."
+              © {new Date().getFullYear()} F.O.T.U PTY LTD. All rights reserved. "Pushing Passion With Purpose."
             </p>
           </div>
         </div>

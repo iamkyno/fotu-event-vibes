@@ -30,7 +30,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo only */}
           <Link to="/" className="flex items-center group">
-            <img src="/lovable-uploads/b398b06d-500d-4e2e-bab2-a1f4ed0e96e9.png" alt="F.O.T.U Logo" className="w-12 h-12 transform group-hover:scale-110 transition-transform duration-300" />
+            <img src="/uploads/FOTU-Logo.webp" alt="F.O.T.U Logo" className="w-18 h-14 transform group-hover:scale-110 transition-transform duration-300" />
           </Link>
 
           {/* Desktop Menu */}
