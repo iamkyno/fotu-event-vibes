@@ -8,14 +8,14 @@ import EventPopup from '@/components/EventPopup';
 import { products } from '@/data/products';
 import { Link } from 'react-router-dom';
 import { scrollToTop } from '@/utils/scrollToTop';
-
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const featuredProducts = products.slice(0, 4);
 
   // Event popup configuration - this would come from your backend
   const eventPopupConfig = {
-    isEnabled: true, // Toggle this in your backend
+    isEnabled: true,
+    // Toggle this in your backend
     eventData: {
       title: "F.O.T.U 2025",
       date: "2 August 2025",
@@ -31,46 +31,36 @@ const Index = () => {
     location: 'Durban',
     venue: 'The BoneShed'
   };
-
   useEffect(() => {
     scrollToTop();
   }, []);
-
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % featuredProducts.length);
+      setCurrentSlide(prev => (prev + 1) % featuredProducts.length);
     }, 4000);
     return () => clearInterval(timer);
   }, [featuredProducts.length]);
-
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % featuredProducts.length);
+    setCurrentSlide(prev => (prev + 1) % featuredProducts.length);
   };
-
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + featuredProducts.length) % featuredProducts.length);
+    setCurrentSlide(prev => (prev - 1 + featuredProducts.length) % featuredProducts.length);
   };
-
   const handleTicketPurchase = () => {
     const message = "Hi! I'm interested in purchasing tickets for the upcoming F.O.T.U event. Please send me more details.";
     const whatsappUrl = `https://wa.me/27847482489?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
   };
-
-  return (
-    <div className="min-h-screen bg-white">
+  return <div className="min-h-screen bg-white">
       <Navigation />
       <EventPopup {...eventPopupConfig} />
       
       {/* Hero Section with Background Image */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url('/lovable-uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png')`
-          }}
-        />
+        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
+        backgroundImage: `url('/lovable-uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png')`
+      }} />
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50" />
@@ -89,18 +79,12 @@ const Index = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in delay-700">
-            <Button 
-              onClick={handleTicketPurchase}
-              className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300"
-            >
+            <Button onClick={handleTicketPurchase} className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300">
               <Ticket className="w-5 h-5 mr-2" />
               Get Tickets
             </Button>
             
-            <Button 
-              variant="outline" 
-              className="border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300"
-            >
+            <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300">
               <Play className="w-5 h-5 mr-2" />
               Watch Recap
             </Button>
@@ -145,17 +129,9 @@ const Index = () => {
               </Link>
             </div>
             
-            <div className="grid grid-cols-2 gap-4">
-              <img 
-                src="/lovable-uploads/5b229133-3069-4d1e-968b-02f2dce6df72.png" 
-                alt="Event crowd" 
-                className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg"
-              />
-              <img 
-                src="/lovable-uploads/c44b8635-f9e8-4729-bc63-dfaadcfd0e0c.png" 
-                alt="DJ setup" 
-                className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg"
-              />
+            <div className="grid grid-cols-1 gap-4">
+              
+              <img src="/lovable-uploads/c44b8635-f9e8-4729-bc63-dfaadcfd0e0c.png" alt="DJ setup" className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg object-fill" />
             </div>
           </div>
         </div>
@@ -182,47 +158,25 @@ const Index = () => {
           
           <div className="relative">
             <div className="overflow-hidden rounded-xl">
-              <div 
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ 
-                  transform: `translateX(-${currentSlide * (100 / 3)}%)`,
-                }}
-              >
-                {featuredProducts.concat(featuredProducts).map((product, index) => (
-                  <div key={`${product.id}-${index}`} className="w-full md:w-1/3 flex-shrink-0 px-2">
-                    <ProductCard 
-                      product={product} 
-                      onPurchase={() => {}}
-                    />
-                  </div>
-                ))}
+              <div className="flex transition-transform duration-500 ease-in-out" style={{
+              transform: `translateX(-${currentSlide * (100 / 3)}%)`
+            }}>
+                {featuredProducts.concat(featuredProducts).map((product, index) => <div key={`${product.id}-${index}`} className="w-full md:w-1/3 flex-shrink-0 px-2">
+                    <ProductCard product={product} onPurchase={() => {}} />
+                  </div>)}
               </div>
             </div>
             
-            <button
-              onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full transition-all duration-300 shadow-lg"
-            >
+            <button onClick={prevSlide} className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full transition-all duration-300 shadow-lg">
               <ChevronLeft className="w-6 h-6" />
             </button>
             
-            <button
-              onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full transition-all duration-300 shadow-lg"
-            >
+            <button onClick={nextSlide} className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full transition-all duration-300 shadow-lg">
               <ChevronRight className="w-6 h-6" />
             </button>
             
             <div className="flex justify-center space-x-2 mt-6">
-              {featuredProducts.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentSlide === index ? 'bg-yellow-400' : 'bg-gray-300'
-                  }`}
-                />
-              ))}
+              {featuredProducts.map((_, index) => <button key={index} onClick={() => setCurrentSlide(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index ? 'bg-yellow-400' : 'bg-gray-300'}`} />)}
             </div>
           </div>
         </div>
@@ -245,10 +199,7 @@ const Index = () => {
                 <span>{currentShow.location}</span>
               </div>
               <p className="text-gray-500 mb-6 text-lg">{currentShow.venue}</p>
-              <Button 
-                onClick={handleTicketPurchase}
-                className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold px-8 py-3 text-lg"
-              >
+              <Button onClick={handleTicketPurchase} className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold px-8 py-3 text-lg">
                 Get Tickets Now
               </Button>
             </CardContent>
@@ -260,21 +211,26 @@ const Index = () => {
       <section className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { number: '350-500', label: 'Event Capacity' },
-              { number: '4', label: 'Years Running' },
-              { number: '2025', label: 'Shows Planned' },
-              { number: '100%', label: 'Energy Level' },
-            ].map((stat, index) => (
-              <div key={index} className="group">
+            {[{
+            number: '350-500',
+            label: 'Event Capacity'
+          }, {
+            number: '4',
+            label: 'Years Running'
+          }, {
+            number: '2025',
+            label: 'Shows Planned'
+          }, {
+            number: '100%',
+            label: 'Energy Level'
+          }].map((stat, index) => <div key={index} className="group">
                 <div className="text-4xl md:text-5xl font-black text-yellow-500 mb-2 group-hover:scale-110 transition-transform duration-300">
                   {stat.number}
                 </div>
                 <div className="text-gray-600 text-sm md:text-base font-semibold">
                   {stat.label}
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -283,11 +239,7 @@ const Index = () => {
       <footer className="bg-gray-800 py-12 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="mb-8">
-            <img 
-              src="/lovable-uploads/b398b06d-500d-4e2e-bab2-a1f4ed0e96e9.png" 
-              alt="F.O.T.U Logo" 
-              className="w-16 h-auto mx-auto mb-4"
-            />
+            <img src="/lovable-uploads/b398b06d-500d-4e2e-bab2-a1f4ed0e96e9.png" alt="F.O.T.U Logo" className="w-16 h-auto mx-auto mb-4" />
             <h3 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
               F.O.T.U
             </h3>
@@ -305,8 +257,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
