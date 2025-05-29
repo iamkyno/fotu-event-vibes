@@ -5,12 +5,37 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
 import ProductCard from '@/components/ProductCard';
+import EventPopup from '@/components/EventPopup';
 import { products } from '@/data/products';
 import { Link } from 'react-router-dom';
+import { scrollToTop } from '@/utils/scrollToTop';
 
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const featuredProducts = products.slice(0, 4);
+
+  // Event popup configuration - this would come from your backend
+  const eventPopupConfig = {
+    isEnabled: true, // Toggle this in your backend
+    eventData: {
+      title: "F.O.T.U 2025",
+      date: "2 August 2025",
+      venue: "The BoneShed",
+      location: "Durban",
+      description: "Join us for an unforgettable night of music and creativity. Pushing Passion With Purpose."
+    }
+  };
+
+  // Current active show
+  const currentShow = {
+    date: '2 August 2025',
+    location: 'Durban',
+    venue: 'The BoneShed'
+  };
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -34,38 +59,24 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className="min-h-screen bg-white">
       <Navigation />
+      <EventPopup {...eventPopupConfig} />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 animate-pulse" />
-        <div className="absolute inset-0">
-          <img 
-            src="/lovable-uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png" 
-            alt="F.O.T.U Event" 
-            className="w-full h-full object-cover opacity-30"
-          />
-        </div>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-yellow-50 to-orange-50">
+        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-orange-500/10" />
         
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">
-          <div className="mb-8">
-            <img 
-              src="/lovable-uploads/b398b06d-500d-4e2e-bab2-a1f4ed0e96e9.png" 
-              alt="F.O.T.U Logo" 
-              className="w-32 h-auto mx-auto mb-4 animate-scale-in"
-            />
-          </div>
-          
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">          
           <h1 className="text-6xl md:text-8xl font-black mb-6 bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 bg-clip-text text-transparent animate-fade-in">
             F.O.T.U
           </h1>
           
-          <p className="text-2xl md:text-3xl text-yellow-400 mb-4 font-bold animate-fade-in delay-300">
+          <p className="text-2xl md:text-3xl text-yellow-500 mb-4 font-bold animate-fade-in delay-300">
             Friends of the Unknown
           </p>
           
-          <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-500">
+          <p className="text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-500">
             "Pushing Passion With Purpose" - An immersive event centered around anchoring the next generation of creatives & DJ/producers into the spotlight.
           </p>
           
@@ -80,7 +91,7 @@ const Index = () => {
             
             <Button 
               variant="outline" 
-              className="border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300"
+              className="border-yellow-400 text-yellow-500 hover:bg-yellow-400 hover:text-black px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300"
             >
               <Play className="w-5 h-5 mr-2" />
               Watch Recap
@@ -96,10 +107,10 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
               About F.O.T.U
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
@@ -107,29 +118,35 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-gray-600 text-lg leading-relaxed">
                 Thami Nyawo, formally known as Thami the Unknown, is a professional DJ/Producer. When he is not gigging, he also plans and coordinates events under his company FOTU PTY LTD.
               </p>
               
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-gray-600 text-lg leading-relaxed">
                 The FOTU brand as an event has seen incredible growth in the last couple of years. From what started as an event at the backyard of Amsterdam bar to now being a stand-alone independent event working with world-renowned brands.
               </p>
               
-              <p className="text-gray-300 text-lg leading-relaxed">
+              <p className="text-gray-600 text-lg leading-relaxed">
                 We've hosted international superstars like Da Capo, Enoo Napa, Karyendasoul, Que DJ, Kususa & many more.
               </p>
+              
+              <Link to="/about">
+                <Button className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold">
+                  Learn More About Us
+                </Button>
+              </Link>
             </div>
             
             <div className="grid grid-cols-2 gap-4">
               <img 
                 src="/lovable-uploads/5b229133-3069-4d1e-968b-02f2dce6df72.png" 
                 alt="Event crowd" 
-                className="rounded-lg hover:scale-105 transition-transform duration-300"
+                className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg"
               />
               <img 
                 src="/lovable-uploads/c44b8635-f9e8-4729-bc63-dfaadcfd0e0c.png" 
                 alt="DJ setup" 
-                className="rounded-lg hover:scale-105 transition-transform duration-300"
+                className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg"
               />
             </div>
           </div>
@@ -137,14 +154,14 @@ const Index = () => {
       </section>
 
       {/* Merch Slider Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-gray-900 to-black">
+      <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="flex justify-between items-center mb-12">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
                 Official Merch
               </h2>
-              <p className="text-gray-400 text-lg">
+              <p className="text-gray-600 text-lg">
                 Rep the F.O.T.U brand with our exclusive merchandise
               </p>
             </div>
@@ -159,14 +176,29 @@ const Index = () => {
             <div className="overflow-hidden rounded-xl">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                style={{ transform: `translateX(-${currentSlide * (100 / 3)}%)` }}
               >
                 {featuredProducts.map((product) => (
-                  <div key={product.id} className="w-full flex-shrink-0 px-2">
-                    <ProductCard 
-                      product={product} 
-                      onPurchase={() => {}}
-                    />
+                  <div key={product.id} className="w-1/3 md:w-1/3 lg:w-1/3 flex-shrink-0 px-2">
+                    <div className="block md:hidden">
+                      <div 
+                        className="flex transition-transform duration-500 ease-in-out"
+                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                      >
+                        <div className="w-full flex-shrink-0">
+                          <ProductCard 
+                            product={product} 
+                            onPurchase={() => {}}
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div className="hidden md:block">
+                      <ProductCard 
+                        product={product} 
+                        onPurchase={() => {}}
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -174,14 +206,14 @@ const Index = () => {
             
             <button
               onClick={prevSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300"
+              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full transition-all duration-300 shadow-lg"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
             
             <button
               onClick={nextSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-all duration-300"
+              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full transition-all duration-300 shadow-lg"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
@@ -192,7 +224,7 @@ const Index = () => {
                   key={index}
                   onClick={() => setCurrentSlide(index)}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    currentSlide === index ? 'bg-yellow-400' : 'bg-gray-600'
+                    currentSlide === index ? 'bg-yellow-400' : 'bg-gray-300'
                   }`}
                 />
               ))}
@@ -201,46 +233,36 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Upcoming Events */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Upcoming Shows 2025
-            </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto" />
-          </div>
+      {/* Current Show */}
+      <section className="py-20 px-4 bg-gradient-to-r from-yellow-50 to-orange-50">
+        <div className="container mx-auto max-w-4xl text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            Next Show
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-12" />
           
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { date: '2 August 2025', location: 'Durban', venue: 'The BoneShed' },
-              { date: '6 September 2025', location: 'Johannesburg', venue: 'TBA' },
-              { date: '1 November 2025', location: 'Durban', venue: 'The BoneShed' },
-            ].map((event, index) => (
-              <Card key={index} className="bg-gray-900/50 border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300 hover:transform hover:scale-105">
-                <CardContent className="p-6 text-center">
-                  <Calendar className="w-12 h-12 text-yellow-400 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-white mb-2">{event.date}</h3>
-                  <div className="flex items-center justify-center text-gray-400 mb-2">
-                    <MapPin className="w-4 h-4 mr-1" />
-                    <span>{event.location}</span>
-                  </div>
-                  <p className="text-gray-500 mb-4">{event.venue}</p>
-                  <Button 
-                    onClick={handleTicketPurchase}
-                    className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold w-full"
-                  >
-                    Get Tickets
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+          <Card className="bg-white border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300 hover:transform hover:scale-105 shadow-lg">
+            <CardContent className="p-8 text-center">
+              <Calendar className="w-16 h-16 text-yellow-400 mx-auto mb-6" />
+              <h3 className="text-3xl font-bold text-gray-800 mb-4">{currentShow.date}</h3>
+              <div className="flex items-center justify-center text-gray-600 mb-2 text-lg">
+                <MapPin className="w-5 h-5 mr-2" />
+                <span>{currentShow.location}</span>
+              </div>
+              <p className="text-gray-500 mb-6 text-lg">{currentShow.venue}</p>
+              <Button 
+                onClick={handleTicketPurchase}
+                className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold px-8 py-3 text-lg"
+              >
+                Get Tickets Now
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 px-4 bg-gradient-to-r from-yellow-400/10 to-orange-500/10">
+      <section className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -250,10 +272,10 @@ const Index = () => {
               { number: '100%', label: 'Energy Level' },
             ].map((stat, index) => (
               <div key={index} className="group">
-                <div className="text-4xl md:text-5xl font-black text-yellow-400 mb-2 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl md:text-5xl font-black text-yellow-500 mb-2 group-hover:scale-110 transition-transform duration-300">
                   {stat.number}
                 </div>
-                <div className="text-gray-400 text-sm md:text-base font-semibold">
+                <div className="text-gray-600 text-sm md:text-base font-semibold">
                   {stat.label}
                 </div>
               </div>
@@ -263,7 +285,7 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black py-12 px-4">
+      <footer className="bg-gray-800 py-12 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="mb-8">
             <img 
@@ -281,7 +303,7 @@ const Index = () => {
             <p className="text-gray-400">Email: Thaminyawo11@gmail.com</p>
           </div>
           
-          <div className="border-t border-gray-800 pt-8">
+          <div className="border-t border-gray-700 pt-8">
             <p className="text-gray-500">
               © 2025 F.O.T.U PTY LTD. All rights reserved. "Pushing Passion With Purpose."
             </p>

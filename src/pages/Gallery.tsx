@@ -1,10 +1,12 @@
 
-import { useState } from 'react';
-import { Calendar, ChevronDown, ChevronRight, Image as ImageIcon } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Calendar, ChevronDown, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import Navigation from '@/components/Navigation';
+import LightboxGallery from '@/components/LightboxGallery';
+import { scrollToTop } from '@/utils/scrollToTop';
 
 interface GalleryItem {
   id: string;
@@ -16,8 +18,14 @@ interface GalleryItem {
 }
 
 const Gallery = () => {
-  const [selectedYear, setSelectedYear] = useState<number | null>(null);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [openYears, setOpenYears] = useState<number[]>([]);
+  const [selectedImage, setSelectedImage] = useState<number>(-1);
+  const [selectedYearImages, setSelectedYearImages] = useState<GalleryItem[]>([]);
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+
+  useEffect(() => {
+    scrollToTop();
+  }, []);
 
   // Sample gallery data - in real app, this would come from your backend
   const galleryItems: GalleryItem[] = [
@@ -83,13 +91,34 @@ const Gallery = () => {
   // Sort years in descending order
   const years = Object.keys(groupedByYear).map(Number).sort((a, b) => b - a);
 
+  // Auto-open all years on mount
+  useEffect(() => {
+    setOpenYears(years);
+  }, []);
+
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
 
+  const toggleYear = (year: number) => {
+    setOpenYears(prev => 
+      prev.includes(year) 
+        ? prev.filter(y => y !== year)
+        : [...prev, year]
+    );
+  };
+
+  const openLightbox = (item: GalleryItem) => {
+    const yearImages = groupedByYear[item.year].sort((a, b) => b.month - a.month);
+    const imageIndex = yearImages.findIndex(img => img.id === item.id);
+    setSelectedYearImages(yearImages);
+    setSelectedImage(imageIndex);
+    setIsLightboxOpen(true);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900">
+    <div className="min-h-screen bg-white">
       <Navigation />
       
       <div className="pt-20 pb-12">
@@ -99,7 +128,7 @@ const Gallery = () => {
             <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
               Event Gallery
             </h1>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Relive the magic of F.O.T.U events through our photo collection. 
               From intimate backstage moments to explosive crowd reactions.
             </p>
@@ -114,11 +143,11 @@ const Gallery = () => {
               {years.map((year) => (
                 <div key={year} className="relative mb-8">
                   {/* Year marker */}
-                  <div className="absolute left-6 w-4 h-4 bg-yellow-400 rounded-full border-4 border-black" />
+                  <div className="absolute left-6 w-4 h-4 bg-yellow-400 rounded-full border-4 border-white shadow-lg" />
                   
                   <Collapsible 
-                    open={selectedYear === year} 
-                    onOpenChange={() => setSelectedYear(selectedYear === year ? null : year)}
+                    open={openYears.includes(year)} 
+                    onOpenChange={() => toggleYear(year)}
                   >
                     <CollapsibleTrigger asChild>
                       <Button 
@@ -127,14 +156,14 @@ const Gallery = () => {
                       >
                         <div className="flex items-center space-x-3">
                           <div className="flex items-center space-x-2">
-                            {selectedYear === year ? (
-                              <ChevronDown className="w-5 h-5 text-yellow-400" />
+                            {openYears.includes(year) ? (
+                              <ChevronDown className="w-5 h-5 text-yellow-500" />
                             ) : (
-                              <ChevronRight className="w-5 h-5 text-yellow-400" />
+                              <ChevronRight className="w-5 h-5 text-yellow-500" />
                             )}
-                            <Calendar className="w-6 h-6 text-yellow-400" />
+                            <Calendar className="w-6 h-6 text-yellow-500" />
                           </div>
-                          <h2 className="text-3xl font-bold text-white group-hover:text-yellow-400 transition-colors">
+                          <h2 className="text-3xl font-bold text-gray-800 group-hover:text-yellow-500 transition-colors">
                             {year}
                           </h2>
                           <span className="text-gray-500 text-lg">
@@ -151,8 +180,8 @@ const Gallery = () => {
                           .map((item) => (
                             <Card 
                               key={item.id} 
-                              className="bg-gray-900/50 border-gray-800 hover:border-yellow-500/50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer group"
-                              onClick={() => setSelectedImage(item.image)}
+                              className="bg-white border-gray-200 hover:border-yellow-500/50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer group shadow-md hover:shadow-lg"
+                              onClick={() => openLightbox(item)}
                             >
                               <CardContent className="p-0">
                                 <div className="relative overflow-hidden rounded-lg">
@@ -181,55 +210,40 @@ const Gallery = () => {
           {/* Stats */}
           <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl md:text-4xl font-black text-yellow-400 mb-2">
+              <div className="text-3xl md:text-4xl font-black text-yellow-500 mb-2">
                 {galleryItems.length}
               </div>
-              <div className="text-gray-400 font-semibold">Total Photos</div>
+              <div className="text-gray-600 font-semibold">Total Photos</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-black text-yellow-400 mb-2">
+              <div className="text-3xl md:text-4xl font-black text-yellow-500 mb-2">
                 {years.length}
               </div>
-              <div className="text-gray-400 font-semibold">Years of Events</div>
+              <div className="text-gray-600 font-semibold">Years of Events</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-black text-yellow-400 mb-2">
+              <div className="text-3xl md:text-4xl font-black text-yellow-500 mb-2">
                 10+
               </div>
-              <div className="text-gray-400 font-semibold">Events Covered</div>
+              <div className="text-gray-600 font-semibold">Events Covered</div>
             </div>
             <div>
-              <div className="text-3xl md:text-4xl font-black text-yellow-400 mb-2">
+              <div className="text-3xl md:text-4xl font-black text-yellow-500 mb-2">
                 ∞
               </div>
-              <div className="text-gray-400 font-semibold">Memories Made</div>
+              <div className="text-gray-600 font-semibold">Memories Made</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Image Modal */}
-      {selectedImage && (
-        <div 
-          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
-          onClick={() => setSelectedImage(null)}
-        >
-          <div className="relative max-w-4xl max-h-full">
-            <img 
-              src={selectedImage} 
-              alt="Gallery image"
-              className="max-w-full max-h-full object-contain rounded-lg"
-            />
-            <Button
-              onClick={() => setSelectedImage(null)}
-              className="absolute top-4 right-4 bg-black/50 hover:bg-black/70 text-white"
-              size="sm"
-            >
-              ✕
-            </Button>
-          </div>
-        </div>
-      )}
+      {/* Lightbox Gallery */}
+      <LightboxGallery
+        images={selectedYearImages}
+        initialIndex={selectedImage}
+        isOpen={isLightboxOpen}
+        onClose={() => setIsLightboxOpen(false)}
+      />
     </div>
   );
 };
