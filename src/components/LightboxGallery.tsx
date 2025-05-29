@@ -53,7 +53,10 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
     };
   }, [isOpen]);
 
-  if (!isOpen || images.length === 0) return null;
+  // Safety check: return null if no images or invalid state
+  if (!isOpen || !images || images.length === 0 || currentIndex < 0 || currentIndex >= images.length) {
+    return null;
+  }
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
@@ -64,6 +67,13 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
   };
 
   const currentImage = images[currentIndex];
+
+  // Additional safety check for currentImage
+  if (!currentImage) {
+    console.log('Current image is undefined, closing lightbox');
+    onClose();
+    return null;
+  }
 
   return (
     <div 
