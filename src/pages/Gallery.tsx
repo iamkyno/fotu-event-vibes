@@ -53,7 +53,7 @@ const Gallery = () => {
           images: [
             {
               id: '1',
-              image: '/lovable-uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png',
+              image: 'http://localhost:8080/lovable-uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png',
               title: 'F.O.T.U Summer Edition',
             }
           ]
@@ -64,7 +64,7 @@ const Gallery = () => {
           images: [
             {
               id: '2',
-              image: '/lovable-uploads/5b229133-3069-4d1e-968b-02f2dce6df72.png',
+              image: 'http://localhost:8080/lovable-uploads/5b229133-3069-4d1e-968b-02f2dce6df72.png',
               title: 'Crowd Energy',
             }
           ]
@@ -75,7 +75,7 @@ const Gallery = () => {
           images: [
             {
               id: '3',
-              image: '/lovable-uploads/c44b8635-f9e8-4729-bc63-dfaadcfd0e0c.png',
+              image: 'http://localhost:8080/lovable-uploads/c44b8635-f9e8-4729-bc63-dfaadcfd0e0c.png',
               title: 'DJ Performance',
             }
           ]
@@ -91,7 +91,7 @@ const Gallery = () => {
           images: [
             {
               id: '4',
-              image: '/lovable-uploads/f0023067-1732-4a5b-9016-a7b3d00e94e1.png',
+              image: 'http://localhost:8080/lovable-uploads/f0023067-1732-4a5b-9016-a7b3d00e94e1.png',
               title: 'Artist Collaboration',
             }
           ]
@@ -102,7 +102,7 @@ const Gallery = () => {
           images: [
             {
               id: '5',
-              image: '/lovable-uploads/60d06c75-3c99-40fa-b0d7-dfa7a7abdd14.png',
+              image: 'http://localhost:8080/lovable-uploads/60d06c75-3c99-40fa-b0d7-dfa7a7abdd14.png',
               title: 'Behind the Decks',
             }
           ]
@@ -113,7 +113,7 @@ const Gallery = () => {
           images: [
             {
               id: '6',
-              image: '/lovable-uploads/6ba36210-1e45-4de8-9047-aff722cb01e0.png',
+              image: 'http://localhost:8080/lovable-uploads/6ba36210-1e45-4de8-9047-aff722cb01e0.png',
               title: 'VIP Experience',
             }
           ]
@@ -137,7 +137,6 @@ const Gallery = () => {
   };
 
   const openLightbox = (yearData: YearData, monthData: MonthData, clickedImage: GalleryImage) => {
-    // Convert images to lightbox format with proper date strings
     const lightboxImages: LightboxImage[] = monthData.images.map(img => ({
       id: img.id,
       image: img.image,
