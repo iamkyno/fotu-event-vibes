@@ -59,7 +59,7 @@ const Index = () => {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-        backgroundImage: `url('/lovable-uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png')`
+        backgroundImage: `url('/uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png')`
       }} />
         
         {/* Overlay */}
@@ -131,7 +131,7 @@ const Index = () => {
             
             <div className="grid grid-cols-1 gap-4">
               
-              <img src="/lovable-uploads/c44b8635-f9e8-4729-bc63-dfaadcfd0e0c.png" alt="DJ setup" className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg object-fill" />
+              <img src="/uploads/c44b8635-f9e8-4729-bc63-dfaadcfd0e0c.png" alt="DJ setup" className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg object-fill" />
             </div>
           </div>
         </div>
@@ -239,7 +239,7 @@ const Index = () => {
       <footer className="bg-gray-800 py-12 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="mb-8">
-            <img src="/lovable-uploads/b398b06d-500d-4e2e-bab2-a1f4ed0e96e9.png" alt="F.O.T.U Logo" className="w-16 h-auto mx-auto mb-4" />
+            <img src="/uploads/b398b06d-500d-4e2e-bab2-a1f4ed0e96e9.png" alt="F.O.T.U Logo" className="w-16 h-auto mx-auto mb-4" />
             <h3 className="text-2xl font-bold bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
               F.O.T.U
             </h3>

@@ -59,12 +59,12 @@ const About = () => {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <img 
-                  src="/lovable-uploads/60d06c75-3c99-40fa-b0d7-dfa7a7abdd14.png" 
+                  src="/uploads/60d06c75-3c99-40fa-b0d7-dfa7a7abdd14.png" 
                   alt="Event atmosphere" 
                   className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
                 />
                 <img 
-                  src="/lovable-uploads/6ba36210-1e45-4de8-9047-aff722cb01e0.png" 
+                  src="/uploads/6ba36210-1e45-4de8-9047-aff722cb01e0.png" 
                   alt="DJ performance" 
                   className="rounded-lg shadow-lg hover:scale-105 transition-transform duration-300"
                 />
@@ -86,7 +86,7 @@ const About = () => {
                 <div className="grid md:grid-cols-3 gap-8 items-center">
                   <div className="md:col-span-1">
                     <img 
-                      src="/lovable-uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png" 
+                      src="/uploads/ThamiTheUnknown.webp" 
                       alt="Thami Nyawo" 
                       className="w-full rounded-lg shadow-lg"
                     />
