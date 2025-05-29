@@ -39,6 +39,18 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, currentIndex]);
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, [isOpen]);
 
   if (!isOpen || images.length === 0) return null;
@@ -54,11 +66,14 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
   const currentImage = images[currentIndex];
 
   return (
-    <div className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4" onClick={onClose}>
+    <div 
+      className="fixed inset-0 z-[100] bg-black/90 flex items-center justify-center p-4" 
+      onClick={onClose}
+    >
       {/* Close button */}
       <Button
         onClick={onClose}
-        className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white"
+        className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white border-0"
         size="sm"
       >
         <X className="w-5 h-5" />
@@ -72,7 +87,7 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
               e.stopPropagation();
               goToPrevious();
             }}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white border-0"
             size="sm"
           >
             <ChevronLeft className="w-6 h-6" />
@@ -83,7 +98,7 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
               e.stopPropagation();
               goToNext();
             }}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white border-0"
             size="sm"
           >
             <ChevronRight className="w-6 h-6" />
@@ -93,19 +108,19 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
 
       {/* Main content */}
       <div className="flex flex-col items-center max-w-full max-h-full" onClick={(e) => e.stopPropagation()}>
-        <div className="relative max-w-[90vw] max-h-[80vh]">
+        <div className="relative max-w-[90vw] max-h-[70vh] flex items-center justify-center">
           <img 
             src={currentImage.image} 
             alt={currentImage.title}
-            className="max-w-full max-h-full object-contain rounded-lg"
+            className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
           />
         </div>
         
         {/* Image info */}
-        <div className="mt-4 text-center text-white">
-          <h3 className="text-xl font-semibold mb-1">{currentImage.title}</h3>
-          <p className="text-gray-300">{currentImage.date}</p>
-          <p className="text-gray-400 text-sm mt-2">
+        <div className="mt-6 text-center text-white max-w-md">
+          <h3 className="text-xl font-semibold mb-2">{currentImage.title}</h3>
+          <p className="text-gray-300 mb-3">{currentImage.date}</p>
+          <p className="text-gray-400 text-sm">
             {currentIndex + 1} of {images.length}
           </p>
         </div>
@@ -113,8 +128,8 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
 
       {/* Thumbnail navigation */}
       {images.length > 1 && (
-        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 max-w-[90vw] overflow-x-auto px-4">
-          <div className="flex space-x-2">
+        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 max-w-[90vw] overflow-hidden">
+          <div className="flex space-x-2 px-4 overflow-x-auto">
             {images.map((image, index) => (
               <button
                 key={image.id}
@@ -123,7 +138,7 @@ const LightboxGallery = ({ images, initialIndex, isOpen, onClose }: LightboxGall
                   setCurrentIndex(index);
                 }}
                 className={`flex-shrink-0 w-16 h-16 rounded border-2 transition-all duration-300 ${
-                  index === currentIndex ? 'border-yellow-400' : 'border-gray-600 hover:border-gray-400'
+                  index === currentIndex ? 'border-yellow-400 scale-110' : 'border-gray-600 hover:border-gray-400'
                 }`}
               >
                 <img 

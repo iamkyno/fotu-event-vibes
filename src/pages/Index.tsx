@@ -12,9 +12,6 @@ import { scrollToTop } from '@/utils/scrollToTop';
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const featuredProducts = products.slice(0, 4);
-  
-  // Create extended array for seamless looping
-  const extendedProducts = [...featuredProducts, ...featuredProducts, ...featuredProducts];
 
   // Event popup configuration - this would come from your backend
   const eventPopupConfig = {
@@ -164,7 +161,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Merch Slider Section with Looping */}
+      {/* Merch Slider Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="flex justify-between items-center mb-12">
@@ -188,31 +185,15 @@ const Index = () => {
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
                 style={{ 
-                  transform: `translateX(-${(currentSlide + featuredProducts.length) * (100 / 3)}%)`,
-                  width: `${extendedProducts.length * (100 / 3)}%`
+                  transform: `translateX(-${currentSlide * (100 / 3)}%)`,
                 }}
               >
-                {extendedProducts.map((product, index) => (
+                {featuredProducts.concat(featuredProducts).map((product, index) => (
                   <div key={`${product.id}-${index}`} className="w-full md:w-1/3 flex-shrink-0 px-2">
-                    <div className="block md:hidden">
-                      <div 
-                        className="flex transition-transform duration-500 ease-in-out"
-                        style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                      >
-                        <div className="w-full flex-shrink-0">
-                          <ProductCard 
-                            product={product} 
-                            onPurchase={() => {}}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="hidden md:block">
-                      <ProductCard 
-                        product={product} 
-                        onPurchase={() => {}}
-                      />
-                    </div>
+                    <ProductCard 
+                      product={product} 
+                      onPurchase={() => {}}
+                    />
                   </div>
                 ))}
               </div>
