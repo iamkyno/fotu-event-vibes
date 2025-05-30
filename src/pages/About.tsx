@@ -40,23 +40,28 @@ const About = () => {
           </div>
         </section>
 
-        {/* Mission Section */}
+        {/* Main Content Grid */}
         <section className="py-20 px-4">
           <div className="container mx-auto max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
+              {/* Mission Column */}
               <div>
                 <h2 className="text-4xl font-bold text-gray-800 mb-6">Our Mission</h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mb-8" />
-                <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  "Pushing Passion With Purpose" - We believe in creating opportunities for emerging talent while providing a first-class experiential experience to our patrons.
-                </p>
-                <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  F.O.T.U is more than just an event - it's a family. A family that intends to create opportunities and focuses on opening the industry for female and male creatives, providing a place where their talents are appreciated.
-                </p>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  We also focus on job creation within the youth sector, ensuring our team consists of young adults across various departments.
-                </p>
+                <div className="space-y-6">
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    "Pushing Passion With Purpose" - We believe in creating opportunities for emerging talent while providing a first-class experiential experience to our patrons.
+                  </p>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    F.O.T.U is more than just an event - it's a family. A family that intends to create opportunities and focuses on opening the industry for female and male creatives, providing a place where their talents are appreciated.
+                  </p>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    We also focus on job creation within the youth sector, ensuring our team consists of young adults across various departments.
+                  </p>
+                </div>
               </div>
+
+              {/* Images Grid Column */}
               <div className="grid grid-cols-2 gap-4">
                 <img 
                   src="/uploads/60d06c75-3c99-40fa-b0d7-dfa7a7abdd14.png" 
@@ -73,7 +78,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Founder Section */}
+        {/* Founder Section - Grid Layout */}
         <section className="py-20 px-4 bg-gray-50">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
@@ -81,41 +86,34 @@ const About = () => {
               <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
             </div>
             
-            <Card className="bg-white shadow-lg border-0 max-w-4xl mx-auto">
-              <CardContent className="p-8 md:p-12">
-                <div className="grid md:grid-cols-3 gap-8 items-center">
-                  <div className="md:col-span-1">
-                    <img 
-                      src="/uploads/ThamiTheUnknown.webp" 
-                      alt="Thami Nyawo" 
-                      className="w-full rounded-lg shadow-lg"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4">Thami The Unknown</h3>
-                    <p className="text-lg text-yellow-500 font-semibold mb-4">Formally known as Thami Nyawo</p>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      A professional DJ/Producer who, when not gigging, plans and coordinates events under his company F.O.T.U PTY LTD.
-                    </p>
-                    <p className="text-gray-600 leading-relaxed">
-                      Under his leadership, the F.O.T.U brand has seen incredible growth, evolving from a backyard event at Amsterdam bar to a standalone independent event working with world-renowned brands.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="grid md:grid-cols-3 gap-8 items-center max-w-4xl mx-auto">
+              <div className="md:col-span-1">
+                <img 
+                  src="/uploads/ThamiTheUnknown.webp" 
+                  alt="Thami Nyawo" 
+                  className="w-full rounded-lg shadow-lg"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">Thami The Unknown</h3>
+                <p className="text-lg text-yellow-500 font-semibold mb-4">Formally known as Thami Nyawo</p>
+                <p className="text-gray-600 leading-relaxed mb-4">
+                  A professional DJ/Producer who, when not gigging, plans and coordinates events under his company F.O.T.U PTY LTD.
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                  Under his leadership, the F.O.T.U brand has seen incredible growth, evolving from a backyard event at Amsterdam bar to a standalone independent event working with world-renowned brands.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Growth Journey */}
+        {/* Journey Timeline Grid */}
         <section className="py-20 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Our Journey</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                From humble beginnings to hosting international superstars
-              </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -146,13 +144,12 @@ const About = () => {
           </div>
         </section>
 
-        {/* Featured Artists */}
+        {/* Artists Grid */}
         <section className="py-20 px-4 bg-gray-50">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Featured Artists & Partners</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
-              <p className="text-xl text-gray-600">Some of the incredible talent and brands we've worked with</p>
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -168,7 +165,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Values Section */}
+        {/* Values Grid */}
         <section className="py-20 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
