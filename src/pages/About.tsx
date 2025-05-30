@@ -170,15 +170,15 @@ const About = () => {
 
         {/* Sponsors Grid */}
         <section className="py-20 px-4">
-          <div className="container mx-auto max-w-6xl">
+          <div className="container mx-auto max-w-4xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Our Sponsors</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center max-w-3xl mx-auto">
               {sponsors.map((sponsor, index) => (
-                <Card key={index} className="bg-white border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:transform hover:scale-105">
+                <Card key={index} className="bg-white border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:transform hover:scale-105 w-full max-w-xs">
                   <CardContent className="p-4 text-center">
                     <Handshake className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
                     <p className="font-semibold text-gray-800">{sponsor}</p>
