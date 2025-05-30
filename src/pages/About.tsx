@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react';
-import { Music, Users, Star, Award, Calendar, MapPin } from 'lucide-react';
+import { Music, Users, Star, Award, Calendar, MapPin, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
@@ -17,8 +17,11 @@ const About = () => {
     window.open(whatsappUrl, '_blank');
   };
 
-  const previousArtists = [
-    'Da Capo', 'Enoo Napa', 'Karyendasoul', 'Que DJ', 'Kususa',
+  const featuredArtists = [
+    'Da Capo', 'Enoo Napa', 'Karyendasoul', 'Que DJ', 'Kususa'
+  ];
+
+  const sponsors = [
     'Castle Double Malt', 'Flying Fish', 'Savanna', 'Heineken',
     'Jagermeister', 'Johnnie Walker Blonde', 'PowerPlay'
   ];
@@ -144,16 +147,16 @@ const About = () => {
           </div>
         </section>
 
-        {/* Artists Grid */}
+        {/* Featured Artists Grid */}
         <section className="py-20 px-4 bg-gray-50">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">Featured Artists & Partners</h2>
+              <h2 className="text-4xl font-bold text-gray-800 mb-6">Featured Artists</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {previousArtists.map((artist, index) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {featuredArtists.map((artist, index) => (
                 <Card key={index} className="bg-white border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:transform hover:scale-105">
                   <CardContent className="p-4 text-center">
                     <Music className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
@@ -165,8 +168,29 @@ const About = () => {
           </div>
         </section>
 
-        {/* Values Grid */}
+        {/* Sponsors Grid */}
         <section className="py-20 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-800 mb-6">Our Sponsors</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {sponsors.map((sponsor, index) => (
+                <Card key={index} className="bg-white border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:transform hover:scale-105">
+                  <CardContent className="p-4 text-center">
+                    <Handshake className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
+                    <p className="font-semibold text-gray-800">{sponsor}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Values Grid */}
+        <section className="py-20 px-4 bg-gray-50">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Our Values</h2>
