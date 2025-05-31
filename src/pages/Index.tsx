@@ -48,7 +48,7 @@ const Index = () => {
   };
   const handleTicketPurchase = () => {
     const message = "Hi! I'm interested in purchasing tickets for the upcoming F.O.T.U event. Please send me more details.";
-    const whatsappUrl = `https://wa.me/27847482489?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://www.webtickets.co.za/v2/Event.aspx?itemid=1554659074`;
     window.open(whatsappUrl, '_blank');
   };
   return <div className="min-h-screen bg-white">
@@ -208,11 +208,8 @@ const Index = () => {
       {/* Stats Section */}
       <section className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[{
-            number: '350-500',
-            label: 'Event Capacity'
-          }, {
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
+            {[ {
             number: '4',
             label: 'Years Running'
           }, {
@@ -242,7 +239,7 @@ const Index = () => {
           
           <div className="mb-8">
             <p className="text-gray-400 mb-2">Contact: 084 748 2489</p>
-            <p className="text-gray-400">Email: enquires@fotu.co.za</p>
+            <p className="text-gray-400">Email: enquiries@fotu.co.za</p>
           </div>
           
           <div className="border-t border-gray-700 pt-8">

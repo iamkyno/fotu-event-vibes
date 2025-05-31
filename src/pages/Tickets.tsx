@@ -8,7 +8,7 @@ import Navigation from '@/components/Navigation';
 const Tickets = () => {
   const handleTicketPurchase = (ticketType: string, price: string) => {
     const message = `Hi! I would like to purchase ${ticketType} tickets for the F.O.T.U event. Price: ${price}. Please send me payment details and confirmation.`;
-    const whatsappUrl = `https://wa.me/27847482489?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://www.webtickets.co.za/v2/Event.aspx?itemid=1554659074`;
     window.open(whatsappUrl, '_blank');
   };
 

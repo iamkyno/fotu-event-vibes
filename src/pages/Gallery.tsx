@@ -45,11 +45,11 @@ const Gallery = () => {
   // Restructured gallery data by year and month
   const galleryData: YearData[] = [
     {
-      year: 2024,
+      year: 2025,
       months: [
         {
           month: 8,
-          monthName: 'August',
+          monthName: 'May',
           images: [
             {
               id: '1',
@@ -58,8 +58,8 @@ const Gallery = () => {
             },
             {
               id: '2',
-              image: '/uploads/5b229133-3069-4d1e-968b-02f2dce6df72.png',
-              title: 'Crowd Energy',
+              image: '/uploads/f0023067-1732-4a5b-9016-a7b3d00e94e1.png',
+              title: 'Artist Collaboration',
             },
             {
               id: '3',
@@ -71,7 +71,7 @@ const Gallery = () => {
       ]
     },
     {
-      year: 2023,
+      year: 2024,
       months: [
         {
           month: 12,
@@ -79,8 +79,8 @@ const Gallery = () => {
           images: [
             {
               id: '4',
-              image: '/uploads/f0023067-1732-4a5b-9016-a7b3d00e94e1.png',
-              title: 'Artist Collaboration',
+              image: '/uploads/5b229133-3069-4d1e-968b-02f2dce6df72.png',
+              title: 'Crowd Energy',
             }
           ]
         },
