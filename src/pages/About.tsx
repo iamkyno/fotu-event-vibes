@@ -1,6 +1,6 @@
 
 import { useEffect } from 'react';
-import { Music, Users, Star, Award, Calendar, MapPin } from 'lucide-react';
+import { Music, Users, Star, Award, Calendar, MapPin, Handshake } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
@@ -17,10 +17,19 @@ const About = () => {
     window.open(whatsappUrl, '_blank');
   };
 
-  const previousArtists = [
-    'Da Capo', 'Enoo Napa', 'Karyendasoul', 'Que DJ', 'Kususa',
-    'Castle Double Malt', 'Flying Fish', 'Savanna', 'Heineken',
-    'Jagermeister', 'Johnnie Walker Blonde', 'PowerPlay'
+  const featuredArtists = [
+    'Da Capo', 'Enoo Napa', 'Karyendasoul', 'Que DJ', 'Kususa'
+  ];
+
+  const sponsors = [
+    { name: 'Castle Double Malt', logo: '/lovable-uploads/5daa9102-8c84-4a7b-a1e4-ee68f01ba7b1.png' },
+    { name: 'Flying Fish', logo: '/lovable-uploads/00be16c5-0a18-4cb4-a365-75866d464f3e.png' },
+    { name: 'Savanna', logo: '/lovable-uploads/061009fa-1194-4bca-8ee8-faa7bf10c90e.png' },
+    { name: 'Heineken', logo: '/lovable-uploads/e6b3800e-fda0-4bcf-96eb-9912d7749620.png' },
+    { name: 'Jagermeister', logo: '/lovable-uploads/e6534d4e-8410-43f6-88b8-058e2df5bcf8.png' },
+    { name: 'Johnnie Walker Blonde', logo: '/lovable-uploads/7d4b4e0f-3424-441f-8b7e-abdcb6f9088d.png' },
+    { name: 'Pilot', logo: '/lovable-uploads/ed8cae4f-74e8-4415-9a63-dfb97a8652b4.png' },
+    { name: 'PowerPlay', logo: null }
   ];
 
   return (
@@ -40,23 +49,28 @@ const About = () => {
           </div>
         </section>
 
-        {/* Mission Section */}
+        {/* Main Content Grid */}
         <section className="py-20 px-4">
           <div className="container mx-auto max-w-6xl">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid lg:grid-cols-2 gap-16 items-start">
+              {/* Mission Column */}
               <div>
                 <h2 className="text-4xl font-bold text-gray-800 mb-6">Our Mission</h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mb-8" />
-                <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  "Pushing Passion With Purpose" - We believe in creating opportunities for emerging talent while providing a first-class experiential experience to our patrons.
-                </p>
-                <p className="text-gray-600 text-lg leading-relaxed mb-6">
-                  F.O.T.U is more than just an event - it's a family. A family that intends to create opportunities and focuses on opening the industry for female and male creatives, providing a place where their talents are appreciated.
-                </p>
-                <p className="text-gray-600 text-lg leading-relaxed">
-                  We also focus on job creation within the youth sector, ensuring our team consists of young adults across various departments.
-                </p>
+                <div className="space-y-6">
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    "Pushing Passion With Purpose" - We believe in creating opportunities for emerging talent while providing a first-class experiential experience to our patrons.
+                  </p>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    F.O.T.U is more than just an event - it's a family. A family that intends to create opportunities and focuses on opening the industry for female and male creatives, providing a place where their talents are appreciated.
+                  </p>
+                  <p className="text-gray-600 text-lg leading-relaxed">
+                    We also focus on job creation within the youth sector, ensuring our team consists of young adults across various departments.
+                  </p>
+                </div>
               </div>
+
+              {/* Images Grid Column */}
               <div className="grid grid-cols-2 gap-4">
                 <img 
                   src="/uploads/60d06c75-3c99-40fa-b0d7-dfa7a7abdd14.png" 
@@ -73,7 +87,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Founder Section */}
+        {/* Founder Section - Grid Layout */}
         <section className="py-20 px-4 bg-gray-50">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
@@ -81,41 +95,34 @@ const About = () => {
               <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
             </div>
             
-            <Card className="bg-white shadow-lg border-0 max-w-4xl mx-auto">
-              <CardContent className="p-8 md:p-12">
-                <div className="grid md:grid-cols-3 gap-8 items-center">
-                  <div className="md:col-span-1">
-                    <img 
-                      src="/uploads/ThamiTheUnknown.webp" 
-                      alt="Thami Nyawo" 
-                      className="w-full rounded-lg shadow-lg"
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-4">Thami The Unknown</h3>
-                    <p className="text-lg text-yellow-500 font-semibold mb-4">Formally known as Thami Nyawo</p>
-                    <p className="text-gray-600 leading-relaxed mb-4">
-                      A professional DJ/Producer who, when not gigging, plans and coordinates events under his company F.O.T.U PTY LTD.
-                    </p>
-                    <p className="text-gray-600 leading-relaxed">
-                      Under his leadership, the F.O.T.U brand has seen incredible growth, evolving from a backyard event at Amsterdam bar to a standalone independent event working with world-renowned brands.
-                    </p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="grid md:grid-cols-3 gap-8 items-center max-w-4xl mx-auto">
+              <div className="md:col-span-1">
+                <img 
+                  src="/uploads/ThamiTheUnknown.webp" 
+                  alt="Thami Nyawo" 
+                  className="w-full rounded-lg shadow-lg"
+                />
+              </div>
+              <div className="md:col-span-2">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">Thami The Unknown</h3>
+                <p className="text-lg text-yellow-500 font-semibold mb-4">Formally known as Thami Nyawo</p>
+                <p className="text-gray-600 leading-relaxed mb-4">
+                  A professional DJ/Producer who, when not gigging, plans and coordinates events under his company F.O.T.U PTY LTD.
+                </p>
+                <p className="text-gray-600 leading-relaxed">
+                  Under his leadership, the F.O.T.U brand has seen incredible growth, evolving from a backyard event at Amsterdam bar to a standalone independent event working with world-renowned brands.
+                </p>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Growth Journey */}
+        {/* Journey Timeline Grid */}
         <section className="py-20 px-4">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Our Journey</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                From humble beginnings to hosting international superstars
-              </p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8">
@@ -146,17 +153,16 @@ const About = () => {
           </div>
         </section>
 
-        {/* Featured Artists */}
+        {/* Featured Artists Grid */}
         <section className="py-20 px-4 bg-gray-50">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold text-gray-800 mb-6">Featured Artists & Partners</h2>
+              <h2 className="text-4xl font-bold text-gray-800 mb-6">Featured Artists</h2>
               <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
-              <p className="text-xl text-gray-600">Some of the incredible talent and brands we've worked with</p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {previousArtists.map((artist, index) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {featuredArtists.map((artist, index) => (
                 <Card key={index} className="bg-white border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:transform hover:scale-105">
                   <CardContent className="p-4 text-center">
                     <Music className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
@@ -168,8 +174,39 @@ const About = () => {
           </div>
         </section>
 
-        {/* Values Section */}
+        {/* Sponsors Grid */}
         <section className="py-20 px-4">
+          <div className="container mx-auto max-w-4xl">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-gray-800 mb-6">Our Sponsors</h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center max-w-4xl mx-auto">
+              {sponsors.map((sponsor, index) => (
+                <Card key={index} className="bg-white border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:transform hover:scale-105 w-full max-w-xs">
+                  <CardContent className="p-6 text-center flex flex-col items-center justify-center h-40">
+                    {sponsor.logo ? (
+                      <img 
+                        src={sponsor.logo} 
+                        alt={sponsor.name}
+                        className="max-w-full max-h-24 object-contain"
+                      />
+                    ) : (
+                      <>
+                        <Handshake className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
+                        <p className="font-semibold text-gray-800">{sponsor.name}</p>
+                      </>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Values Grid */}
+        <section className="py-20 px-4 bg-gray-50">
           <div className="container mx-auto max-w-6xl">
             <div className="text-center mb-16">
               <h2 className="text-4xl font-bold text-gray-800 mb-6">Our Values</h2>

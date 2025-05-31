@@ -5,9 +5,11 @@ import { Card, CardContent } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
 import ProductCard from '@/components/ProductCard';
 import EventPopup from '@/components/EventPopup';
+import SponsorsMarquee from '@/components/SponsorsMarquee';
 import { products } from '@/data/products';
 import { Link } from 'react-router-dom';
 import { scrollToTop } from '@/utils/scrollToTop';
+
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const featuredProducts = products.slice(0, 4);
@@ -135,6 +137,9 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Sponsors Banner */}
+      <SponsorsMarquee />
+
       {/* Merch Slider Section */}
       <section className="py-20 px-4">
         <div className="container mx-auto max-w-6xl">
@@ -251,4 +256,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;
