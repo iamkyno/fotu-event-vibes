@@ -2,14 +2,14 @@
 import React from 'react';
 
 const SponsorsMarquee = () => {
-  // Sample sponsor data - you can replace these with actual sponsor logos
+  // Actual sponsor data with logos
   const sponsors = [
-    { id: 1, name: 'Sponsor 1', logo: '/uploads/placeholder.svg' },
-    { id: 2, name: 'Sponsor 2', logo: '/uploads/placeholder.svg' },
-    { id: 3, name: 'Sponsor 3', logo: '/uploads/placeholder.svg' },
-    { id: 4, name: 'Sponsor 4', logo: '/uploads/placeholder.svg' },
-    { id: 5, name: 'Sponsor 5', logo: '/uploads/placeholder.svg' },
-    { id: 6, name: 'Sponsor 6', logo: '/uploads/placeholder.svg' },
+    { id: 1, name: 'Castle Double Malt', logo: '/lovable-uploads/5daa9102-8c84-4a7b-a1e4-ee68f01ba7b1.png' },
+    { id: 2, name: 'Flying Fish', logo: '/lovable-uploads/00be16c5-0a18-4cb4-a365-75866d464f3e.png' },
+    { id: 3, name: 'Savanna', logo: '/lovable-uploads/061009fa-1194-4bca-8ee8-faa7bf10c90e.png' },
+    { id: 4, name: 'Heineken', logo: '/lovable-uploads/e6b3800e-fda0-4bcf-96eb-9912d7749620.png' },
+    { id: 5, name: 'Jagermeister', logo: '/lovable-uploads/e6534d4e-8410-43f6-88b8-058e2df5bcf8.png' },
+    { id: 6, name: 'Johnnie Walker Blonde', logo: '/lovable-uploads/7d4b4e0f-3424-441f-8b7e-abdcb6f9088d.png' },
   ];
 
   return (
