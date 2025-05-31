@@ -22,8 +22,13 @@ const About = () => {
   ];
 
   const sponsors = [
-    'Castle Double Malt', 'Flying Fish', 'Savanna', 'Heineken',
-    'Jagermeister', 'Johnnie Walker Blonde', 'PowerPlay'
+    { name: 'Castle Double Malt', logo: '/lovable-uploads/5daa9102-8c84-4a7b-a1e4-ee68f01ba7b1.png' },
+    { name: 'Flying Fish', logo: '/lovable-uploads/00be16c5-0a18-4cb4-a365-75866d464f3e.png' },
+    { name: 'Savanna', logo: '/lovable-uploads/061009fa-1194-4bca-8ee8-faa7bf10c90e.png' },
+    { name: 'Heineken', logo: '/lovable-uploads/e6b3800e-fda0-4bcf-96eb-9912d7749620.png' },
+    { name: 'Jagermeister', logo: '/lovable-uploads/e6534d4e-8410-43f6-88b8-058e2df5bcf8.png' },
+    { name: 'Johnnie Walker Blonde', logo: '/lovable-uploads/7d4b4e0f-3424-441f-8b7e-abdcb6f9088d.png' },
+    { name: 'PowerPlay', logo: null }
   ];
 
   return (
@@ -179,9 +184,19 @@ const About = () => {
             <div className="grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center max-w-3xl mx-auto">
               {sponsors.map((sponsor, index) => (
                 <Card key={index} className="bg-white border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:transform hover:scale-105 w-full max-w-xs">
-                  <CardContent className="p-4 text-center">
-                    <Handshake className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
-                    <p className="font-semibold text-gray-800">{sponsor}</p>
+                  <CardContent className="p-6 text-center flex flex-col items-center justify-center h-32">
+                    {sponsor.logo ? (
+                      <img 
+                        src={sponsor.logo} 
+                        alt={sponsor.name}
+                        className="max-w-full max-h-16 object-contain"
+                      />
+                    ) : (
+                      <>
+                        <Handshake className="w-8 h-8 text-yellow-500 mx-auto mb-2" />
+                        <p className="font-semibold text-gray-800">{sponsor.name}</p>
+                      </>
+                    )}
                   </CardContent>
                 </Card>
               ))}
