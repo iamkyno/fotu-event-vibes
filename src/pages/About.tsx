@@ -28,6 +28,7 @@ const About = () => {
     { name: 'Heineken', logo: '/lovable-uploads/e6b3800e-fda0-4bcf-96eb-9912d7749620.png' },
     { name: 'Jagermeister', logo: '/lovable-uploads/e6534d4e-8410-43f6-88b8-058e2df5bcf8.png' },
     { name: 'Johnnie Walker Blonde', logo: '/lovable-uploads/7d4b4e0f-3424-441f-8b7e-abdcb6f9088d.png' },
+    { name: 'Pilot', logo: '/lovable-uploads/ed8cae4f-74e8-4415-9a63-dfb97a8652b4.png' },
     { name: 'PowerPlay', logo: null }
   ];
 
@@ -181,15 +182,15 @@ const About = () => {
               <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center max-w-3xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6 justify-items-center max-w-4xl mx-auto">
               {sponsors.map((sponsor, index) => (
                 <Card key={index} className="bg-white border-0 shadow-md hover:shadow-lg transition-all duration-300 hover:transform hover:scale-105 w-full max-w-xs">
-                  <CardContent className="p-6 text-center flex flex-col items-center justify-center h-32">
+                  <CardContent className="p-6 text-center flex flex-col items-center justify-center h-40">
                     {sponsor.logo ? (
                       <img 
                         src={sponsor.logo} 
                         alt={sponsor.name}
-                        className="max-w-full max-h-16 object-contain"
+                        className="max-w-full max-h-24 object-contain"
                       />
                     ) : (
                       <>

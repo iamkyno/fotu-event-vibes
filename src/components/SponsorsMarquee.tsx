@@ -10,6 +10,7 @@ const SponsorsMarquee = () => {
     { id: 4, name: 'Heineken', logo: '/lovable-uploads/e6b3800e-fda0-4bcf-96eb-9912d7749620.png' },
     { id: 5, name: 'Jagermeister', logo: '/lovable-uploads/e6534d4e-8410-43f6-88b8-058e2df5bcf8.png' },
     { id: 6, name: 'Johnnie Walker Blonde', logo: '/lovable-uploads/7d4b4e0f-3424-441f-8b7e-abdcb6f9088d.png' },
+    { id: 7, name: 'Pilot', logo: '/lovable-uploads/ed8cae4f-74e8-4415-9a63-dfb97a8652b4.png' },
   ];
 
   return (
@@ -34,7 +35,7 @@ const SponsorsMarquee = () => {
           {sponsors.map((sponsor) => (
             <div
               key={sponsor.id}
-              className="flex-shrink-0 mx-8 w-32 h-16 flex items-center justify-center"
+              className="flex-shrink-0 mx-8 w-40 h-20 flex items-center justify-center"
             >
               <img
                 src={sponsor.logo}
@@ -47,7 +48,7 @@ const SponsorsMarquee = () => {
           {sponsors.map((sponsor) => (
             <div
               key={`duplicate-${sponsor.id}`}
-              className="flex-shrink-0 mx-8 w-32 h-16 flex items-center justify-center"
+              className="flex-shrink-0 mx-8 w-40 h-20 flex items-center justify-center"
             >
               <img
                 src={sponsor.logo}
