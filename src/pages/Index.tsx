@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Ticket, Play } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
 import ProductCard from '@/components/ProductCard';
 import EventPopup from '@/components/EventPopup';
 import SponsorsMarquee from '@/components/SponsorsMarquee';
+import TicketButton from '@/components/TicketButton';
+import { SHOW_CONFIG, getShowDisplayText } from '@/components/ShowInfo';
 import { products } from '@/data/products';
 import { Link } from 'react-router-dom';
 import { scrollToTop } from '@/utils/scrollToTop';
@@ -13,6 +15,7 @@ import { scrollToTop } from '@/utils/scrollToTop';
 const Index = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const featuredProducts = products.slice(0, 4);
+  const showInfo = getShowDisplayText();
 
   // Event popup configuration - this would come from your backend
   const eventPopupConfig = {
@@ -20,28 +23,24 @@ const Index = () => {
     // Toggle this in your backend
     eventData: {
       title: "F.O.T.U 2025",
-      date: "2 August 2025",
-      venue: "Onomo Hotel",
-      location: "Durban",
+      date: SHOW_CONFIG.date,
+      venue: SHOW_CONFIG.venue,
+      location: SHOW_CONFIG.location,
       description: "Join us for an unforgettable night of music and creativity. Pushing Passion With Purpose."
     }
   };
 
-  // Current active show
-  const currentShow = {
-    date: '2 August 2025',
-    location: 'Durban',
-    venue: 'Onomo Hotel'
-  };
   useEffect(() => {
     scrollToTop();
   }, []);
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % featuredProducts.length);
     }, 4000);
     return () => clearInterval(timer);
   }, [featuredProducts.length]);
+
   const nextSlide = () => {
     setCurrentSlide(prev => (prev + 1) % featuredProducts.length);
   };
@@ -79,10 +78,7 @@ const Index = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in delay-700">
-            <Button onClick={handleTicketPurchase} className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300">
-              <Ticket className="w-5 h-5 mr-2" />
-              Get Tickets
-            </Button>
+            <TicketButton size="lg" className="px-8 py-3 text-lg" />
             
             <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300">
               <Play className="w-5 h-5 mr-2" />
@@ -196,15 +192,13 @@ const Index = () => {
           <Card className="bg-white border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300 hover:transform hover:scale-105 shadow-lg">
             <CardContent className="p-8 text-center">
               <Calendar className="w-16 h-16 text-yellow-400 mx-auto mb-6" />
-              <h3 className="text-3xl font-bold text-gray-800 mb-4">{currentShow.date}</h3>
+              <h3 className="text-3xl font-bold text-gray-800 mb-4">{showInfo.fullDate}</h3>
               <div className="flex items-center justify-center text-gray-600 mb-2 text-lg">
                 <MapPin className="w-5 h-5 mr-2" />
-                <span>{currentShow.location}</span>
+                <span>{showInfo.location}</span>
               </div>
-              <p className="text-gray-500 mb-6 text-lg">{currentShow.venue}</p>
-              <Button onClick={handleTicketPurchase} className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold px-8 py-3 text-lg">
-                Get Tickets Now
-              </Button>
+              <p className="text-gray-500 mb-6 text-lg">{showInfo.venue}</p>
+              <TicketButton size="lg" className="px-8 py-3 text-lg" />
             </CardContent>
           </Card>
         </div>

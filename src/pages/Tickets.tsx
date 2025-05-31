@@ -1,11 +1,13 @@
-
 import { Calendar, MapPin, Clock, Users, Star, Ticket as TicketIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
+import { SHOW_CONFIG, getShowDisplayText } from '@/components/ShowInfo';
 
 const Tickets = () => {
+  const showInfo = getShowDisplayText();
+
   const handleTicketPurchase = (ticketType: string, price: string) => {
     const message = `Hi! I would like to purchase ${ticketType} tickets for the F.O.T.U event. Price: ${price}. Please send me payment details and confirmation.`;
     const whatsappUrl = `https://www.webtickets.co.za/v2/Event.aspx?itemid=1554659074`;
@@ -15,12 +17,12 @@ const Tickets = () => {
   const events = [
     {
       id: 1,
-      date: '2 August 2025',
-      day: 'Saturday',
-      time: 'TBA',
-      venue: 'Onomo Hotel',
-      location: 'Durban',
-      headliner: 'TBA',
+      date: showInfo.dateOnly,
+      day: SHOW_CONFIG.day,
+      time: SHOW_CONFIG.time,
+      venue: SHOW_CONFIG.venue,
+      location: SHOW_CONFIG.location,
+      headliner: SHOW_CONFIG.headliner,
       supporting: ['TBA', 'TBA'],
       ticketTypes: [
         { name: 'Early Bird', price: 'TBA', available: true, description: 'Limited time offer' },

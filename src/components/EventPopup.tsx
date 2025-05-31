@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { X, Calendar, MapPin, Ticket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { getShowDisplayText } from '@/components/ShowInfo';
 
 interface EventPopupProps {
   isEnabled: boolean;
@@ -18,6 +19,7 @@ interface EventPopupProps {
 const EventPopup = ({ isEnabled, eventData }: EventPopupProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hasBeenShown, setHasBeenShown] = useState(false);
+  const showInfo = getShowDisplayText();
 
   useEffect(() => {
     const popupShown = localStorage.getItem('fotu-popup-shown');
