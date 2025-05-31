@@ -15,17 +15,17 @@ const Tickets = () => {
   const events = [
     {
       id: 1,
-      date: '5 July 2025',
+      date: '2 August 2025',
       day: 'Saturday',
-      time: '18:00 - 02:00',
-      venue: 'The Werehouse',
+      time: 'TBA',
+      venue: 'Onomo Hotel',
       location: 'Durban',
-      headliner: 'Da Capo',
-      supporting: ['Enoo Napa', 'Local DJs'],
+      headliner: 'TBA',
+      supporting: ['TBA', 'TBA'],
       ticketTypes: [
-        { name: 'Early Bird', price: 'R150', available: true, description: 'Limited time offer' },
-        { name: 'General Admission', price: 'R200', available: true, description: 'Standard entry' },
-        { name: 'VIP Experience', price: 'R350', available: true, description: 'Includes drinks & backstage access' },
+        { name: 'Early Bird', price: 'TBA', available: true, description: 'Limited time offer' },
+        { name: 'General Admission', price: 'TBA', available: true, description: 'Standard entry' },
+        { name: 'VIP Experience', price: 'TBA', available: true, description: 'Includes drinks & backstage access' },
       ]
     }
   ];

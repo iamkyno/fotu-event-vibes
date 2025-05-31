@@ -20,8 +20,8 @@ const Index = () => {
     // Toggle this in your backend
     eventData: {
       title: "F.O.T.U 2025",
-      date: "5 July 2025",
-      venue: "The Werehouse",
+      date: "2 August 2025",
+      venue: "Onomo Hotel",
       location: "Durban",
       description: "Join us for an unforgettable night of music and creativity. Pushing Passion With Purpose."
     }
@@ -29,9 +29,9 @@ const Index = () => {
 
   // Current active show
   const currentShow = {
-    date: '5 July 2025',
+    date: '2 August 2025',
     location: 'Durban',
-    venue: 'The Werehouse'
+    venue: 'Onomo Hotel'
   };
   useEffect(() => {
     scrollToTop();

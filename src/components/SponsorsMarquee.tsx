@@ -17,7 +17,7 @@ const SponsorsMarquee = () => {
     <section className="py-12 bg-white border-y border-gray-200 overflow-hidden">
       <div className="container mx-auto max-w-6xl mb-8">
         <h2 className="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2">
-          Our Sponsors
+          Sponsors
         </h2>
         <p className="text-gray-600 text-center">
           Proudly supported by amazing partners
@@ -35,7 +35,7 @@ const SponsorsMarquee = () => {
           {sponsors.map((sponsor) => (
             <div
               key={sponsor.id}
-              className="flex-shrink-0 mx-8 w-40 h-20 flex items-center justify-center"
+              className="flex-shrink-0 mx-8 w-70 h-70 flex items-center justify-center"
             >
               <img
                 src={sponsor.logo}
@@ -48,7 +48,7 @@ const SponsorsMarquee = () => {
           {sponsors.map((sponsor) => (
             <div
               key={`duplicate-${sponsor.id}`}
-              className="flex-shrink-0 mx-8 w-40 h-20 flex items-center justify-center"
+              className="flex-shrink-0 mx-8 w-70 h-23 flex items-center justify-center"
             >
               <img
                 src={sponsor.logo}
