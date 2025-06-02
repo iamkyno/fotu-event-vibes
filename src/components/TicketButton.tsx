@@ -1,6 +1,7 @@
 
 import { Ticket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { getButtonClasses } from './ThemeConfig';
 
 interface TicketButtonProps {
   variant?: 'default' | 'outline';
@@ -15,12 +16,15 @@ const TicketButton = ({ variant = 'default', size = 'default', className = '' }:
     window.open(whatsappUrl, '_blank');
   };
 
+  const buttonVariant = variant === 'default' ? 'primary' : 'outline';
+  const themeClasses = getButtonClasses(buttonVariant);
+
   return (
     <Button 
       onClick={handleTicketPurchase} 
       variant={variant}
       size={size}
-      className={`${variant === 'default' ? 'bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold' : 'border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black'} transform hover:scale-105 transition-all duration-300 ${className}`}
+      className={`${themeClasses} transform hover:scale-105 transition-all duration-300 ${className}`}
     >
       <Ticket className="w-5 h-5 mr-2" />
       Get Tickets

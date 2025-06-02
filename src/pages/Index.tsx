@@ -7,7 +7,9 @@ import ProductCard from '@/components/ProductCard';
 import EventPopup from '@/components/EventPopup';
 import SponsorsMarquee from '@/components/SponsorsMarquee';
 import TicketButton from '@/components/TicketButton';
+import Logo from '@/components/Logo';
 import { SHOW_CONFIG, getShowDisplayText } from '@/components/ShowInfo';
+import { THEME_CONFIG, getGradientClasses, getTextGradientClasses } from '@/components/ThemeConfig';
 import { products } from '@/data/products';
 import { Link } from 'react-router-dom';
 import { scrollToTop } from '@/utils/scrollToTop';
@@ -52,35 +54,42 @@ const Index = () => {
     const whatsappUrl = `https://www.webtickets.co.za/v2/Event.aspx?itemid=1554659074`;
     window.open(whatsappUrl, '_blank');
   };
-  return <div className="min-h-screen bg-white">
+  return (
+    <div className="min-h-screen bg-white">
       <Navigation />
       <EventPopup {...eventPopupConfig} />
       
       {/* Hero Section with Background Image */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Image */}
-        <div className="absolute inset-0 bg-cover bg-center bg-no-repeat" style={{
-        backgroundImage: `url('/uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png')`
-      }} />
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
+          style={{
+            backgroundImage: `url('/uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png')`
+          }} 
+        />
         
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/50" />
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">          
-          <img src="/uploads/FOTU-Logo.webp" alt="DJ setup" className="max-w-sm mx-auto hover:scale-102 transition-transform duration-300 shadow-lg object-fill" />
+          <Logo size="xl" className="mx-auto mb-6" />
           
-          <p className="text-2xl md:text-3xl text-yellow-400 mb-4 font-bold animate-fade-in delay-300">
-            Friends of the Unknown
+          <p className={`text-2xl md:text-3xl ${THEME_CONFIG.primary.text} mb-4 font-bold animate-fade-in delay-300`}>
+            {THEME_CONFIG.logo.subtitle}
           </p>
           
           <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-500">
-          An immersive event centered around anchoring the next generation of creatives & DJ/producers into the spotlight.
+            An immersive event centered around anchoring the next generation of creatives & DJ/producers into the spotlight.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in delay-700">
             <TicketButton size="lg" className="px-8 py-3 text-lg" />
             
-            <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-yellow-400 hover:text-black px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300">
+            <Button 
+              variant="outline" 
+              className={`${THEME_CONFIG.primary.border} ${THEME_CONFIG.primary.text} hover:${THEME_CONFIG.primary.bg} hover:text-black px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300`}
+            >
               <Play className="w-5 h-5 mr-2" />
               Watch Recap
             </Button>
@@ -88,8 +97,8 @@ const Index = () => {
         </div>
         
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-yellow-400 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-yellow-400 rounded-full mt-2 animate-pulse" />
+          <div className={`w-6 h-10 border-2 ${THEME_CONFIG.primary.border} rounded-full flex justify-center`}>
+            <div className={`w-1 h-3 ${THEME_CONFIG.primary.bg} rounded-full mt-2 animate-pulse`} />
           </div>
         </div>
       </section>
@@ -101,7 +110,7 @@ const Index = () => {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
               About F.O.T.U
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-8" />
+            <div className={`w-24 h-1 ${getGradientClasses()} mx-auto mb-8`} />
           </div>
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -119,7 +128,7 @@ const Index = () => {
               </p>
               
               <Link to="/about">
-                <Button className="bg-gradient-to-r mt-6 from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold">
+                <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-black font-semibold mt-6`}>
                   Learn More
                 </Button>
               </Link>
@@ -149,7 +158,7 @@ const Index = () => {
               </p>
             </div>
             <Link to="/merch">
-              <Button className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold">
+              <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-black font-semibold`}>
                 View All
               </Button>
             </Link>
@@ -182,16 +191,16 @@ const Index = () => {
       </section>
 
       {/* Current Show */}
-      <section className="py-20 px-4 bg-gradient-to-r from-yellow-50 to-orange-50">
+      <section className={`py-20 px-4 bg-gradient-to-r from-${THEME_CONFIG.accent.light} to-orange-50`}>
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
             Next Show
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-yellow-400 to-orange-500 mx-auto mb-12" />
+          <div className={`w-24 h-1 ${getGradientClasses()} mx-auto mb-12`} />
           
-          <Card className="bg-white border-yellow-500/20 hover:border-yellow-500/50 transition-all duration-300 hover:transform hover:scale-105 shadow-lg">
+          <Card className={`bg-white ${THEME_CONFIG.primary.border}/20 hover:${THEME_CONFIG.primary.border}/50 transition-all duration-300 hover:transform hover:scale-105 shadow-lg`}>
             <CardContent className="p-8 text-center">
-              <Calendar className="w-16 h-16 text-yellow-400 mx-auto mb-6" />
+              <Calendar className={`w-16 h-16 ${THEME_CONFIG.primary.text} mx-auto mb-6`} />
               <h3 className="text-3xl font-bold text-gray-800 mb-4">{showInfo.fullDate}</h3>
               <div className="flex items-center justify-center text-gray-600 mb-2 text-lg">
                 <MapPin className="w-5 h-5 mr-2" />
@@ -208,23 +217,20 @@ const Index = () => {
       <section className="py-20 px-4 bg-gray-50">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
-            {[ {
-            number: '4',
-            label: 'Years Running'
-          }, {
-            number: '2025',
-            label: 'Shows Planned'
-          }, {
-            number: '100%',
-            label: 'Energy Level'
-          }].map((stat, index) => <div key={index} className="group">
-                <div className="text-4xl md:text-5xl font-black text-yellow-500 mb-2 group-hover:scale-110 transition-transform duration-300">
+            {[
+              { number: '4', label: 'Years Running' },
+              { number: '2025', label: 'Shows Planned' },
+              { number: '100%', label: 'Energy Level' }
+            ].map((stat, index) => (
+              <div key={index} className="group">
+                <div className={`text-4xl md:text-5xl font-black ${THEME_CONFIG.primary.text.replace('text-', 'text-')} mb-2 group-hover:scale-110 transition-transform duration-300`}>
                   {stat.number}
                 </div>
                 <div className="text-gray-600 text-sm md:text-base font-semibold">
                   {stat.label}
                 </div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -233,7 +239,7 @@ const Index = () => {
       <footer className="bg-gray-800 py-12 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="mb-8">
-            <img src="/uploads/FOTU-Logo.webp" alt="F.O.T.U Logo" className="w-20 h-auto mx-auto mb-4" />
+            <Logo size="sm" className="mx-auto mb-4" />
           </div>
           
           <div className="mb-8">
@@ -243,12 +249,13 @@ const Index = () => {
           
           <div className="border-t border-gray-700 pt-8">
             <p className="text-gray-500">
-              © {new Date().getFullYear()} F.O.T.U PTY LTD. All rights reserved. "Pushing Passion With Purpose."
+              © {new Date().getFullYear()} F.O.T.U PTY LTD. All rights reserved. "{THEME_CONFIG.logo.tagline}"
             </p>
           </div>
         </div>
       </footer>
-    </div>;
+    </div>
+  );
 };
 
 export default Index;
