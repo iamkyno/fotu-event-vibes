@@ -1,9 +1,11 @@
+
 import { Calendar, MapPin, Clock, Users, Star, Ticket as TicketIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Navigation from '@/components/Navigation';
 import { SHOW_CONFIG, getShowDisplayText } from '@/components/ShowInfo';
+import { THEME_CONFIG, getGradientClasses } from '@/components/ThemeConfig';
 
 const Tickets = () => {
   const showInfo = getShowDisplayText();
@@ -40,7 +42,7 @@ const Tickets = () => {
         {/* Header */}
         <div className="container mx-auto px-4 py-12">
           <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-6xl font-black mb-4 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
+            <h1 className={`text-5xl md:text-6xl font-black mb-4 ${getGradientClasses()} bg-clip-text text-transparent`}>
               Get Your Tickets
             </h1>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
@@ -52,16 +54,16 @@ const Tickets = () => {
           {/* Events */}
           <div className="space-y-12">
             {events.map((event) => (
-              <Card key={event.id} className="bg-gray-900/50 border-yellow-500/20 overflow-hidden">
+              <Card key={event.id} className={`bg-gray-900/50 ${THEME_CONFIG.primary.border}/20 overflow-hidden`}>
                 <CardContent className="p-0">
                   <div className="md:flex">
                     {/* Event Info */}
                     <div className="md:w-1/2 p-8 space-y-6">
                       <div className="flex items-center space-x-3 mb-4">
-                        <Badge className="bg-yellow-400 text-black font-semibold">
+                        <Badge className={`${getGradientClasses()} text-white font-semibold`}>
                           UPCOMING
                         </Badge>
-                        <Badge variant="outline" className="border-yellow-400 text-yellow-400">
+                        <Badge variant="outline" className={`${THEME_CONFIG.primary.border} ${THEME_CONFIG.primary.text}`}>
                           {event.location}
                         </Badge>
                       </div>
@@ -70,24 +72,24 @@ const Tickets = () => {
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">
                           F.O.T.U {event.location}
                         </h2>
-                        <p className="text-yellow-400 text-lg font-semibold mb-4">
+                        <p className={`${THEME_CONFIG.primary.text} text-lg font-semibold mb-4`}>
                           Featuring {event.headliner}
                         </p>
                       </div>
 
                       <div className="space-y-3">
                         <div className="flex items-center space-x-3 text-gray-300">
-                          <Calendar className="w-5 h-5 text-yellow-400" />
+                          <Calendar className={`w-5 h-5 ${THEME_CONFIG.primary.text}`} />
                           <span>{event.day}, {event.date}</span>
                         </div>
                         
                         <div className="flex items-center space-x-3 text-gray-300">
-                          <Clock className="w-5 h-5 text-yellow-400" />
+                          <Clock className={`w-5 h-5 ${THEME_CONFIG.primary.text}`} />
                           <span>{event.time}</span>
                         </div>
                         
                         <div className="flex items-center space-x-3 text-gray-300">
-                          <MapPin className="w-5 h-5 text-yellow-400" />
+                          <MapPin className={`w-5 h-5 ${THEME_CONFIG.primary.text}`} />
                           <span>{event.venue}, {event.location}</span>
                         </div>
 
@@ -108,7 +110,7 @@ const Tickets = () => {
                     {/* Ticket Options */}
                     <div className="md:w-1/2 bg-gradient-to-br from-gray-800/50 to-gray-900/50 p-8">
                       <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
-                        <TicketIcon className="w-6 h-6 mr-2 text-yellow-400" />
+                        <TicketIcon className={`w-6 h-6 mr-2 ${THEME_CONFIG.primary.text}`} />
                         Ticket Options
                       </h3>
                       
@@ -116,7 +118,7 @@ const Tickets = () => {
                         {event.ticketTypes.map((ticket, index) => (
                           <div 
                             key={index}
-                            className="bg-gray-900/50 rounded-lg p-4 border border-gray-700 hover:border-yellow-500/50 transition-all duration-300"
+                            className={`bg-gray-900/50 rounded-lg p-4 border border-gray-700 hover:${THEME_CONFIG.primary.border}/50 transition-all duration-300`}
                           >
                             <div className="flex justify-between items-start mb-2">
                               <div>
@@ -124,7 +126,7 @@ const Tickets = () => {
                                 <p className="text-gray-400 text-sm">{ticket.description}</p>
                               </div>
                               <div className="text-right">
-                                <div className="text-2xl font-bold text-yellow-400">{ticket.price}</div>
+                                <div className={`text-2xl font-bold ${THEME_CONFIG.primary.text}`}>{ticket.price}</div>
                                 {index === 0 && (
                                   <Badge className="bg-red-500 text-xs mt-1">
                                     LIMITED
@@ -135,7 +137,7 @@ const Tickets = () => {
                             
                             <Button 
                               onClick={() => handleTicketPurchase(ticket.name, ticket.price)}
-                              className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-semibold mt-3"
+                              className={`w-full ${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-semibold mt-3`}
                               disabled={!ticket.available}
                             >
                               {ticket.available ? 'Purchase Tickets' : 'Sold Out'}
@@ -144,8 +146,8 @@ const Tickets = () => {
                         ))}
                       </div>
 
-                      <div className="mt-6 p-4 bg-yellow-400/10 rounded-lg border border-yellow-400/20">
-                        <h4 className="text-yellow-400 font-semibold mb-2 flex items-center">
+                      <div className={`mt-6 p-4 ${THEME_CONFIG.primary.bg}/10 rounded-lg ${THEME_CONFIG.primary.border}/20 border`}>
+                        <h4 className={`${THEME_CONFIG.primary.text} font-semibold mb-2 flex items-center`}>
                           <Star className="w-4 h-4 mr-1" />
                           VIP Experience Includes:
                         </h4>
@@ -166,7 +168,7 @@ const Tickets = () => {
 
           {/* Info Section */}
           <div className="mt-16 grid md:grid-cols-2 gap-8">
-            <Card className="bg-gray-900/50 border-yellow-500/20">
+            <Card className={`bg-gray-900/50 ${THEME_CONFIG.primary.border}/20`}>
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-white mb-4">Important Information</h3>
                 <ul className="space-y-2 text-gray-300">
@@ -180,7 +182,7 @@ const Tickets = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gray-900/50 border-yellow-500/20">
+            <Card className={`bg-gray-900/50 ${THEME_CONFIG.primary.border}/20`}>
               <CardContent className="p-8">
                 <h3 className="text-2xl font-bold text-white mb-4">Payment Methods</h3>
                 <div className="space-y-4 text-gray-300">
@@ -190,8 +192,8 @@ const Tickets = () => {
                     <li>• Cash on collection</li>
                     <li>• Mobile payments</li>
                   </ul>
-                  <div className="mt-4 p-3 bg-yellow-400/10 rounded border border-yellow-400/20">
-                    <p className="text-yellow-400 font-semibold">
+                  <div className={`mt-4 p-3 ${THEME_CONFIG.primary.bg}/10 rounded ${THEME_CONFIG.primary.border}/20 border`}>
+                    <p className={`${THEME_CONFIG.primary.text} font-semibold`}>
                       📱 WhatsApp: 084 748 2489
                     </p>
                   </div>

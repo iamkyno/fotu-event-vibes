@@ -1,7 +1,7 @@
 
 import { Ticket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { getButtonClasses } from './ThemeConfig';
+import { getGradientClasses } from './ThemeConfig';
 
 interface TicketButtonProps {
   variant?: 'default' | 'outline';
@@ -16,8 +16,9 @@ const TicketButton = ({ variant = 'default', size = 'default', className = '' }:
     window.open(whatsappUrl, '_blank');
   };
 
-  const buttonVariant = variant === 'default' ? 'primary' : 'outline';
-  const themeClasses = getButtonClasses(buttonVariant);
+  const themeClasses = variant === 'default' 
+    ? `${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-bold`
+    : `border-pink-400 text-pink-400 hover:bg-pink-400 hover:text-white`;
 
   return (
     <Button 
