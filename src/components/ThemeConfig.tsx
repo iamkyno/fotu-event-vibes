@@ -1,18 +1,28 @@
 
 export const THEME_CONFIG = {
-  // Brand Colors
+  // Brand Colors - Updated to match new vibrant theme
   primary: {
-    from: 'from-yellow-400',
-    to: 'to-orange-500',
-    fromHover: 'from-yellow-500',
-    toHover: 'to-orange-600',
-    solid: 'yellow-400',
-    solidHover: 'yellow-500',
-    text: 'text-yellow-400',
-    border: 'border-yellow-400',
-    borderHover: 'border-yellow-500',
-    bg: 'bg-yellow-400',
-    bgHover: 'bg-yellow-500'
+    from: 'from-pink-400',
+    to: 'to-purple-600',
+    fromHover: 'from-pink-500',
+    toHover: 'to-purple-700',
+    solid: 'pink-400',
+    solidHover: 'pink-500',
+    text: 'text-pink-400',
+    border: 'border-pink-400',
+    borderHover: 'border-pink-500',
+    bg: 'bg-pink-400',
+    bgHover: 'bg-pink-500'
+  },
+  
+  // Secondary accent colors from the new theme
+  secondary: {
+    green: 'bg-green-500',
+    greenText: 'text-green-500',
+    yellow: 'bg-yellow-400',
+    yellowText: 'text-yellow-400',
+    purple: 'bg-purple-600',
+    purpleText: 'text-purple-600'
   },
   
   // Logo Configuration
@@ -24,11 +34,11 @@ export const THEME_CONFIG = {
     tagline: 'Pushing Passion With Purpose'
   },
   
-  // Event Specific Colors (can be switched based on event)
+  // Event Specific Colors (vibrant theme)
   accent: {
-    light: 'orange-50',
-    medium: 'orange-500',
-    dark: 'orange-600'
+    light: 'purple-50',
+    medium: 'purple-500',
+    dark: 'purple-600'
   }
 };
 
@@ -43,10 +53,10 @@ export const getButtonClasses = (variant: 'primary' | 'outline' = 'primary') => 
   const config = THEME_CONFIG.primary;
   
   if (variant === 'outline') {
-    return `border-${config.solid} text-${config.solid} hover:${config.bg} hover:text-black`;
+    return `border-${config.solid} text-${config.solid} hover:${config.bg} hover:text-white`;
   }
   
-  return `${getGradientClasses()} hover:${getGradientClasses(true)} text-black font-bold`;
+  return `${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-bold`;
 };
 
 export const getTextGradientClasses = () => {
