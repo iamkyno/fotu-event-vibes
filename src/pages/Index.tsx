@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -88,7 +89,7 @@ const Index = () => {
             
             <Button 
               variant="outline" 
-              className={`${THEME_CONFIG.primary.border} ${THEME_CONFIG.primary.text} hover:${THEME_CONFIG.primary.bg} hover:text-black px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300`}
+              className={`${THEME_CONFIG.primary.border} ${THEME_CONFIG.primary.text} hover:${THEME_CONFIG.primary.bg} hover:text-white px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300`}
             >
               <Play className="w-5 h-5 mr-2" />
               Watch Recap
@@ -128,7 +129,7 @@ const Index = () => {
               </p>
               
               <Link to="/about">
-                <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-black font-semibold mt-6`}>
+                <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-semibold mt-6`}>
                   Learn More
                 </Button>
               </Link>
@@ -158,7 +159,7 @@ const Index = () => {
               </p>
             </div>
             <Link to="/merch">
-              <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-black font-semibold`}>
+              <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-semibold`}>
                 View All
               </Button>
             </Link>
@@ -184,14 +185,14 @@ const Index = () => {
             </button>
             
             <div className="flex justify-center space-x-2 mt-6">
-              {featuredProducts.map((_, index) => <button key={index} onClick={() => setCurrentSlide(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index ? 'bg-yellow-400' : 'bg-gray-300'}`} />)}
+              {featuredProducts.map((_, index) => <button key={index} onClick={() => setCurrentSlide(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index ? `${THEME_CONFIG.secondary.yellow}` : 'bg-gray-300'}`} />)}
             </div>
           </div>
         </div>
       </section>
 
       {/* Current Show */}
-      <section className={`py-20 px-4 bg-gradient-to-r from-${THEME_CONFIG.accent.light} to-orange-50`}>
+      <section className={`py-20 px-4 bg-gradient-to-r from-${THEME_CONFIG.accent.light} to-purple-100`}>
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
             Next Show
@@ -223,7 +224,7 @@ const Index = () => {
               { number: '100%', label: 'Energy Level' }
             ].map((stat, index) => (
               <div key={index} className="group">
-                <div className={`text-4xl md:text-5xl font-black ${THEME_CONFIG.primary.text.replace('text-', 'text-')} mb-2 group-hover:scale-110 transition-transform duration-300`}>
+                <div className={`text-4xl md:text-5xl font-black ${THEME_CONFIG.primary.text} mb-2 group-hover:scale-110 transition-transform duration-300`}>
                   {stat.number}
                 </div>
                 <div className="text-gray-600 text-sm md:text-base font-semibold">

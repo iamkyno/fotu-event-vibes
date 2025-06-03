@@ -3,6 +3,7 @@ import { Music, Calendar, ShoppingBag, Image, Ticket, Menu, X, Info } from 'luci
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import Logo from './Logo';
+import { THEME_CONFIG } from './ThemeConfig';
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,7 +31,7 @@ const Navigation = () => {
   }];
   
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-yellow-500/20 shadow-sm">
+    <nav className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b ${THEME_CONFIG.primary.border}/20 shadow-sm`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
@@ -47,8 +48,8 @@ const Navigation = () => {
                 <Link
                   key={item.name}
                   to={item.path}
-                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 hover:bg-yellow-500/10 ${
-                    isActive ? 'text-yellow-500 bg-yellow-500/10' : 'text-gray-700 hover:text-yellow-500'
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 hover:${THEME_CONFIG.primary.bg}/10 ${
+                    isActive ? `${THEME_CONFIG.primary.text} ${THEME_CONFIG.primary.bg}/10` : `text-gray-700 hover:${THEME_CONFIG.primary.text}`
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -61,7 +62,7 @@ const Navigation = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-gray-700 hover:text-yellow-500 transition-colors"
+            className={`md:hidden p-2 text-gray-700 hover:${THEME_CONFIG.primary.text} transition-colors`}
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -78,8 +79,8 @@ const Navigation = () => {
                   key={item.name}
                   to={item.path}
                   onClick={() => setIsOpen(false)}
-                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-300 hover:bg-yellow-500/10 ${
-                    isActive ? 'text-yellow-500 bg-yellow-500/10' : 'text-gray-700 hover:text-yellow-500'
+                  className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-300 hover:${THEME_CONFIG.primary.bg}/10 ${
+                    isActive ? `${THEME_CONFIG.primary.text} ${THEME_CONFIG.primary.bg}/10` : `text-gray-700 hover:${THEME_CONFIG.primary.text}`
                   }`}
                 >
                   <Icon className="w-5 h-5" />
