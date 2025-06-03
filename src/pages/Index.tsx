@@ -73,7 +73,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-black/50" />
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">          
-          <Logo size="xl" className="mx-auto mb-6" />
+          <Logo size="xl" showText={false} className="mx-auto mb-6" />
           
           <p className={`text-2xl md:text-3xl ${THEME_CONFIG.primary.text} mb-4 font-bold animate-fade-in delay-300`}>
             {THEME_CONFIG.logo.subtitle}
@@ -239,7 +239,7 @@ const Index = () => {
       <footer className="bg-gray-800 py-12 px-4">
         <div className="container mx-auto max-w-6xl text-center">
           <div className="mb-8">
-            <Logo size="sm" className="mx-auto mb-4" />
+            <Logo size="sm" showText={false} className="mx-auto mb-4" />
           </div>
           
           <div className="mb-8">

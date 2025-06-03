@@ -1,3 +1,4 @@
+
 import { Music, Calendar, ShoppingBag, Image, Ticket, Menu, X, Info } from 'lucide-react';
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
@@ -27,12 +28,14 @@ const Navigation = () => {
     path: '/tickets',
     icon: Ticket
   }];
-  return <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-yellow-500/20 shadow-sm">
+  
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-yellow-500/20 shadow-sm">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center group">
-            <Logo size="md" />
+            <Logo size="sm" showText={false} />
           </Link>
 
           {/* Desktop Menu */}
@@ -87,7 +90,8 @@ const Navigation = () => {
           </div>
         )}
       </div>
-    </nav>;
+    </nav>
+  );
 };
 
 export default Navigation;
