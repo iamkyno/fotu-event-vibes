@@ -9,10 +9,10 @@ interface LogoProps {
 
 const Logo = ({ size = 'md', showText = true, className = '' }: LogoProps) => {
   const sizeClasses = {
-    sm: 'w-8 h-8',
-    md: 'w-12 h-12',
-    lg: 'w-16 h-16',
-    xl: 'w-24 h-24'
+    sm: 'w-12 h-12',
+    md: 'w-16 h-16',
+    lg: 'w-24 h-24',
+    xl: 'w-32 h-32'
   };
 
   const textSizeClasses = {
@@ -25,9 +25,9 @@ const Logo = ({ size = 'md', showText = true, className = '' }: LogoProps) => {
   return (
     <div className={`flex items-center ${className}`}>
       <img 
-        src={THEME_CONFIG.logo.src} 
-        alt={THEME_CONFIG.logo.alt} 
-        className={`${sizeClasses[size]} transform group-hover:scale-110 transition-transform duration-300`} 
+        src="/lovable-uploads/fd97e490-b0fa-4c18-918e-9c8368340ba2.png" 
+        alt="F.O.T.U - Friends of the Unknown" 
+        className={`${sizeClasses[size]} transform group-hover:scale-110 transition-transform duration-300 object-contain`} 
       />
       {showText && (
         <div className="ml-3">

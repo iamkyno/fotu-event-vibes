@@ -33,15 +33,35 @@ const Navigation = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b ${THEME_CONFIG.primary.border}/20 shadow-sm`}>
       <div className="container mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+        <div className="flex justify-between items-center h-20">
+          {/* Desktop Menu - Left */}
+          <div className="hidden md:flex space-x-6 flex-1">
+            {navItems.slice(0, 2).map(item => {
+              const Icon = item.icon;
+              const isActive = location.pathname === item.path;
+              return (
+                <Link
+                  key={item.name}
+                  to={item.path}
+                  className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-300 hover:${THEME_CONFIG.primary.bg}/10 ${
+                    isActive ? `${THEME_CONFIG.primary.text} ${THEME_CONFIG.primary.bg}/10` : `text-gray-700 hover:${THEME_CONFIG.primary.text}`
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                  <span className="text-zinc-950">{item.name}</span>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Centered Logo */}
           <Link to="/" className="flex items-center group">
-            <Logo size="sm" showText={false} />
+            <Logo size="md" showText={false} />
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map(item => {
+          {/* Desktop Menu - Right */}
+          <div className="hidden md:flex space-x-6 flex-1 justify-end">
+            {navItems.slice(2).map(item => {
               const Icon = item.icon;
               const isActive = location.pathname === item.path;
               return (

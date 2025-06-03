@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -238,20 +237,22 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="bg-gray-800 py-12 px-4">
-        <div className="container mx-auto max-w-6xl text-center">
-          <div className="mb-8">
-            <Logo size="sm" showText={false} className="mx-auto mb-4" />
-          </div>
-          
-          <div className="mb-8">
-            <p className="text-gray-400 mb-2">Contact: 084 748 2489</p>
-            <p className="text-gray-400">Email: enquiries@fotu.co.za</p>
-          </div>
-          
-          <div className="border-t border-gray-700 pt-8">
-            <p className="text-gray-500">
-              © {new Date().getFullYear()} F.O.T.U PTY LTD. All rights reserved. "{THEME_CONFIG.logo.tagline}"
-            </p>
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center">
+            <div className="mb-8">
+              <Logo size="md" showText={false} className="mx-auto mb-4" />
+            </div>
+            
+            <div className="mb-8">
+              <p className="text-gray-400 mb-2">Contact: 084 748 2489</p>
+              <p className="text-gray-400">Email: enquiries@fotu.co.za</p>
+            </div>
+            
+            <div className="border-t border-gray-700 pt-8">
+              <p className="text-gray-500">
+                © {new Date().getFullYear()} F.O.T.U PTY LTD. All rights reserved. "{THEME_CONFIG.logo.tagline}"
+              </p>
+            </div>
           </div>
         </div>
       </footer>
