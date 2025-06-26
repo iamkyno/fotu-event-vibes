@@ -104,10 +104,10 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section className="py-20 px-4 bg-gray-50">
+      <section className={`py-20 px-4 bg-gradient-to-br from-${THEME_CONFIG.accent.light} to-purple-50`}>
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+            <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${getTextGradientClasses()}`}>
               About F.O.T.U
             </h2>
             <div className={`w-24 h-1 ${getGradientClasses()} mx-auto mb-8`} />
@@ -115,27 +115,26 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-gray-700 text-lg leading-relaxed">
                 Thami The Unknown, formally known as Thami Nyawo, is a professional DJ/Producer. When he is not gigging, he also plans and coordinates events under his company FOTU PTY LTD.
               </p>
               
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-gray-700 text-lg leading-relaxed">
                 The FOTU brand as an event has seen incredible growth in the last couple of years. From what started as an event at the backyard of Amsterdam bar to now being a stand-alone independent event working with world-renowned brands.
               </p>
               
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-gray-700 text-lg leading-relaxed">
                 We've hosted international superstars like Da Capo, Enoo Napa, Karyendasoul, Que DJ, Kususa & many more.
               </p>
               
               <Link to="/about">
-                <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-semibold mt-6`}>
+                <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-semibold mt-6 transform hover:scale-105 transition-all duration-300`}>
                   Learn More
                 </Button>
               </Link>
             </div>
             
             <div className="grid grid-cols-1 gap-4">
-              
               <img src="/uploads/c44b8635-f9e8-4729-bc63-dfaadcfd0e0c.png" alt="DJ setup" className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg object-fill" />
             </div>
           </div>
