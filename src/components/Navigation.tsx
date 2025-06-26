@@ -55,8 +55,8 @@ const Navigation = () => {
           </div>
 
           {/* Centered Logo */}
-          <Link to="/" className="flex items-center group">
-            <Logo size="md" showText={false} />
+          <Link to="/" className="flex items-center justify-center flex-1 md:flex-initial group">
+            <Logo size="lg" showText={false} />
           </Link>
 
           {/* Desktop Menu - Right */}
