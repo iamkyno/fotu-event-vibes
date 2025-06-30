@@ -1,5 +1,6 @@
+
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Calendar, MapPin, Users, Play } from 'lucide-react';
+import { Music, Calendar, MapPin, Users, Play, Star, Heart, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import Navigation from '@/components/Navigation';
@@ -15,14 +16,11 @@ import { Link } from 'react-router-dom';
 import { scrollToTop } from '@/utils/scrollToTop';
 
 const Index = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const featuredProducts = products.slice(0, 4);
+  const [activeFeature, setActiveFeature] = useState(0);
   const showInfo = getShowDisplayText();
 
-  // Event popup configuration - this would come from your backend
   const eventPopupConfig = {
     isEnabled: true,
-    // Toggle this in your backend
     eventData: {
       title: "F.O.T.U 2025",
       date: SHOW_CONFIG.date,
@@ -32,224 +30,239 @@ const Index = () => {
     }
   };
 
+  const features = [
+    {
+      icon: Music,
+      title: "World-Class DJs",
+      description: "International superstars and rising talent on one stage"
+    },
+    {
+      icon: Heart,
+      title: "Community First",
+      description: "Anchoring the next generation of creatives"
+    },
+    {
+      icon: Zap,
+      title: "High Energy",
+      description: "Unforgettable nights of pure musical energy"
+    }
+  ];
+
   useEffect(() => {
     scrollToTop();
   }, []);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % featuredProducts.length);
-    }, 4000);
+      setActiveFeature(prev => (prev + 1) % features.length);
+    }, 3000);
     return () => clearInterval(timer);
-  }, [featuredProducts.length]);
+  }, [features.length]);
 
-  const nextSlide = () => {
-    setCurrentSlide(prev => (prev + 1) % featuredProducts.length);
-  };
-  const prevSlide = () => {
-    setCurrentSlide(prev => (prev - 1 + featuredProducts.length) % featuredProducts.length);
-  };
-  const handleTicketPurchase = () => {
-    const message = "Hi! I'm interested in purchasing tickets for the upcoming F.O.T.U event. Please send me more details.";
-    const whatsappUrl = `https://www.webtickets.co.za/v2/Event.aspx?itemid=1554659074`;
-    window.open(whatsappUrl, '_blank');
-  };
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-pink-900 to-purple-800">
       <Navigation />
       <EventPopup {...eventPopupConfig} />
       
-      {/* Hero Section with Background Image */}
+      {/* Hero Section - Completely New Design */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat" 
-          style={{
-            backgroundImage: `url('/uploads/3c4d7105-4957-413f-afe9-d3803057dd4d.png')`
-          }} 
-        />
-        
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-black/50" />
-        
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto animate-fade-in">          
-          <Logo size="xl" showText={false} className="mx-auto mb-6" />
-          
-          <p className={`text-2xl md:text-3xl ${THEME_CONFIG.primary.text} mb-4 font-bold animate-fade-in delay-300`}>
-            {THEME_CONFIG.logo.subtitle}
-          </p>
-          
-          <p className="text-lg md:text-xl text-white mb-8 max-w-2xl mx-auto leading-relaxed animate-fade-in delay-500">
-            An immersive event centered around anchoring the next generation of creatives & DJ/producers into the spotlight.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in delay-700">
-            <TicketButton size="lg" className="px-8 py-3 text-lg" />
-            
-            <Button 
-              variant="outline" 
-              className={`${THEME_CONFIG.primary.border} ${THEME_CONFIG.primary.text} hover:${THEME_CONFIG.primary.bg} hover:text-white px-8 py-3 text-lg transform hover:scale-105 transition-all duration-300`}
-            >
-              <Play className="w-5 h-5 mr-2" />
-              Watch Recap
-            </Button>
-          </div>
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-64 h-64 bg-pink-500/20 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-conic from-pink-500/10 via-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-spin" style={{ animationDuration: '20s' }} />
         </div>
         
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className={`w-6 h-10 border-2 ${THEME_CONFIG.primary.border} rounded-full flex justify-center`}>
-            <div className={`w-1 h-3 ${THEME_CONFIG.primary.bg} rounded-full mt-2 animate-pulse`} />
+        <div className="relative z-10 text-center px-4 max-w-6xl mx-auto">          
+          <div className="mb-8 transform hover:scale-105 transition-all duration-500">
+            <Logo size="xl" showText={false} className="mx-auto mb-6" />
+          </div>
+          
+          <h1 className="text-6xl md:text-8xl font-black text-white mb-6 tracking-tight">
+            F.O.T.U
+          </h1>
+          
+          <p className="text-2xl md:text-4xl bg-gradient-to-r from-pink-300 to-purple-300 bg-clip-text text-transparent mb-4 font-bold">
+            Friends of the Unknown
+          </p>
+          
+          <p className="text-xl md:text-2xl text-purple-100 mb-12 max-w-3xl mx-auto leading-relaxed font-light">
+            Where passion meets purpose. Experience the future of electronic music.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+            <TicketButton size="lg" className="px-12 py-4 text-xl rounded-full shadow-2xl" />
+            <Button 
+              variant="outline" 
+              className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm px-12 py-4 text-xl rounded-full shadow-2xl"
+            >
+              <Play className="w-6 h-6 mr-3" />
+              Experience F.O.T.U
+            </Button>
+          </div>
+
+          {/* Feature Cards */}
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {features.map((feature, index) => {
+              const Icon = feature.icon;
+              return (
+                <Card key={index} className={`bg-white/10 backdrop-blur-md border-white/20 hover:bg-white/20 transition-all duration-300 transform hover:scale-105 ${activeFeature === index ? 'ring-2 ring-pink-400' : ''}`}>
+                  <CardContent className="p-6 text-center">
+                    <Icon className="w-12 h-12 text-pink-300 mx-auto mb-4" />
+                    <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                    <p className="text-purple-100">{feature.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section className={`py-20 px-4 bg-gradient-to-br from-${THEME_CONFIG.accent.light} to-purple-50`}>
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className={`text-4xl md:text-5xl font-bold mb-6 ${getTextGradientClasses()}`}>
-              About F.O.T.U
-            </h2>
-            <div className={`w-24 h-1 ${getGradientClasses()} mx-auto mb-8`} />
-          </div>
-          
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <p className="text-gray-700 text-lg leading-relaxed">
-                Thami The Unknown, formally known as Thami Nyawo, is a professional DJ/Producer. When he is not gigging, he also plans and coordinates events under his company FOTU PTY LTD.
-              </p>
+      {/* Experience Section */}
+      <section className="py-20 px-4 bg-white relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-50 to-purple-50" />
+        <div className="container mx-auto max-w-6xl relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+                THE F.O.T.U EXPERIENCE
+              </div>
               
-              <p className="text-gray-700 text-lg leading-relaxed">
-                The FOTU brand as an event has seen incredible growth in the last couple of years. From what started as an event at the backyard of Amsterdam bar to now being a stand-alone independent event working with world-renowned brands.
-              </p>
+              <h2 className={`text-5xl md:text-6xl font-black mb-8 ${getTextGradientClasses()}`}>
+                Beyond Music
+              </h2>
               
-              <p className="text-gray-700 text-lg leading-relaxed">
-                We've hosted international superstars like Da Capo, Enoo Napa, Karyendasoul, Que DJ, Kususa & many more.
-              </p>
+              <div className="space-y-6 text-lg text-gray-700 leading-relaxed">
+                <p>
+                  From humble beginnings at Amsterdam bar to becoming a powerhouse in the electronic music scene, F.O.T.U has evolved into something extraordinary.
+                </p>
+                
+                <p>
+                  We've created a platform where international superstars like Da Capo, Enoo Napa, and Karyendasoul share the stage with emerging talent, fostering a community that pushes boundaries.
+                </p>
+                
+                <div className="flex items-center space-x-8 pt-4">
+                  <div className="text-center">
+                    <div className="text-3xl font-black text-pink-600">4+</div>
+                    <div className="text-sm text-gray-600">Years Strong</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-black text-purple-600">50+</div>
+                    <div className="text-sm text-gray-600">Artists Featured</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-3xl font-black text-pink-600">∞</div>
+                    <div className="text-sm text-gray-600">Memories Made</div>
+                  </div>
+                </div>
+              </div>
               
               <Link to="/about">
-                <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-semibold mt-6 transform hover:scale-105 transition-all duration-300`}>
-                  Learn More
+                <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-bold mt-8 px-8 py-3 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300`}>
+                  Discover Our Story
                 </Button>
               </Link>
             </div>
             
-            <div className="grid grid-cols-1 gap-4">
-              <img src="/uploads/c44b8635-f9e8-4729-bc63-dfaadcfd0e0c.png" alt="DJ setup" className="rounded-lg hover:scale-105 transition-transform duration-300 shadow-lg object-fill" />
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-400/20 to-purple-600/20 rounded-3xl blur-xl transform rotate-6" />
+              <img 
+                src="/uploads/c44b8635-f9e8-4729-bc63-dfaadcfd0e0c.png" 
+                alt="F.O.T.U Experience" 
+                className="relative rounded-3xl shadow-2xl hover:scale-105 transition-transform duration-500" 
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Sponsors Banner */}
-      <SponsorsMarquee />
-
-      {/* Merch Slider Section */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <div className="flex justify-between items-center mb-12">
-            <div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
-                Official Merch
-              </h2>
-              <p className="text-gray-600 text-lg">
-                Rep the F.O.T.U brand with our exclusive merchandise
-              </p>
-            </div>
-            <Link to="/merch">
-              <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-semibold`}>
-                View All
-              </Button>
-            </Link>
-          </div>
-          
-          <div className="relative">
-            <div className="overflow-hidden rounded-xl">
-              <div className="flex transition-transform duration-500 ease-in-out" style={{
-              transform: `translateX(-${currentSlide * (100 / 3)}%)`
-            }}>
-                {featuredProducts.concat(featuredProducts).map((product, index) => <div key={`${product.id}-${index}`} className="w-full md:w-1/3 flex-shrink-0 px-2">
-                    <ProductCard product={product} onPurchase={() => {}} />
-                  </div>)}
-              </div>
-            </div>
-            
-            <button onClick={prevSlide} className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full transition-all duration-300 shadow-lg">
-              <ChevronLeft className="w-6 h-6" />
-            </button>
-            
-            <button onClick={nextSlide} className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 p-2 rounded-full transition-all duration-300 shadow-lg">
-              <ChevronRight className="w-6 h-6" />
-            </button>
-            
-            <div className="flex justify-center space-x-2 mt-6">
-              {featuredProducts.map((_, index) => <button key={index} onClick={() => setCurrentSlide(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${currentSlide === index ? `${THEME_CONFIG.secondary.yellow}` : 'bg-gray-300'}`} />)}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Current Show */}
-      <section className={`py-20 px-4 bg-gradient-to-r from-${THEME_CONFIG.accent.light} to-purple-100`}>
+      {/* Next Event - Redesigned */}
+      <section className="py-20 px-4 bg-gradient-to-r from-gray-900 to-black">
         <div className="container mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Next Show
-          </h2>
-          <div className={`w-24 h-1 ${getGradientClasses()} mx-auto mb-12`} />
+          <div className="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+            NEXT EVENT
+          </div>
           
-          <Card className={`bg-white ${THEME_CONFIG.primary.border}/20 hover:${THEME_CONFIG.primary.border}/50 transition-all duration-300 hover:transform hover:scale-105 shadow-lg`}>
-            <CardContent className="p-8 text-center">
-              <Calendar className={`w-16 h-16 ${THEME_CONFIG.primary.text} mx-auto mb-6`} />
-              <h3 className="text-3xl font-bold text-gray-800 mb-4">{showInfo.fullDate}</h3>
-              <div className="flex items-center justify-center text-gray-600 mb-2 text-lg">
-                <MapPin className="w-5 h-5 mr-2" />
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-8">
+            Ready to Experience F.O.T.U?
+          </h2>
+          
+          <Card className="bg-gradient-to-br from-pink-500/10 to-purple-600/10 backdrop-blur-md border-pink-500/20 hover:border-pink-400/50 transition-all duration-300 transform hover:scale-105">
+            <CardContent className="p-12 text-center">
+              <Calendar className="w-20 h-20 text-pink-400 mx-auto mb-8" />
+              <h3 className="text-4xl font-black text-white mb-6">{showInfo.fullDate}</h3>
+              <div className="flex items-center justify-center text-pink-200 mb-4 text-xl">
+                <MapPin className="w-6 h-6 mr-3" />
                 <span>{showInfo.location}</span>
               </div>
-              <p className="text-gray-500 mb-6 text-lg">{showInfo.venue}</p>
-              <TicketButton size="lg" className="px-8 py-3 text-lg" />
+              <p className="text-purple-200 mb-8 text-lg">{showInfo.venue}</p>
+              <TicketButton size="lg" className="px-12 py-4 text-xl rounded-full shadow-2xl" />
             </CardContent>
           </Card>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 px-4 bg-gray-50">
+      {/* Sponsors */}
+      <SponsorsMarquee />
+
+      {/* Merch Section - Redesigned */}
+      <section className="py-20 px-4 bg-gradient-to-br from-purple-50 to-pink-50">
         <div className="container mx-auto max-w-6xl">
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8 text-center">
-            {[
-              { number: '4', label: 'Years Running' },
-              { number: '2025', label: 'Shows Planned' },
-              { number: '100%', label: 'Energy Level' }
-            ].map((stat, index) => (
-              <div key={index} className="group">
-                <div className={`text-4xl md:text-5xl font-black ${THEME_CONFIG.primary.text} mb-2 group-hover:scale-110 transition-transform duration-300`}>
-                  {stat.number}
-                </div>
-                <div className="text-gray-600 text-sm md:text-base font-semibold">
-                  {stat.label}
-                </div>
+          <div className="text-center mb-16">
+            <div className="inline-block bg-gradient-to-r from-pink-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold mb-6">
+              OFFICIAL MERCHANDISE
+            </div>
+            
+            <h2 className={`text-5xl md:text-6xl font-black mb-6 ${getTextGradientClasses()}`}>
+              Wear the Movement
+            </h2>
+            <p className="text-gray-600 text-xl max-w-2xl mx-auto">
+              Express your connection to the F.O.T.U community with our exclusive collection
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {products.slice(0, 4).map((product) => (
+              <div key={product.id} className="transform hover:scale-105 transition-all duration-300">
+                <ProductCard product={product} onPurchase={() => {}} />
               </div>
             ))}
+          </div>
+          
+          <div className="text-center">
+            <Link to="/merch">
+              <Button className={`${getGradientClasses()} hover:${getGradientClasses(true)} text-white font-bold px-12 py-4 text-xl rounded-full shadow-lg transform hover:scale-105 transition-all duration-300`}>
+                Shop Full Collection
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gray-800 py-12 px-4">
+      {/* Footer - Redesigned */}
+      <footer className="bg-gradient-to-r from-gray-900 to-black py-20 px-4">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center">
-            <div className="mb-8">
-              <Logo size="md" showText={false} className="mx-auto mb-4" />
-            </div>
+            <Logo size="lg" showText={false} className="mx-auto mb-8 transform hover:scale-110 transition-all duration-300" />
             
-            <div className="mb-8">
-              <p className="text-gray-400 mb-2">Contact: 084 748 2489</p>
-              <p className="text-gray-400">Email: enquiries@fotu.co.za</p>
+            <h3 className="text-3xl font-bold text-white mb-4">Friends of the Unknown</h3>
+            <p className="text-xl text-pink-300 mb-8 font-semibold">{THEME_CONFIG.logo.tagline}</p>
+            
+            <div className="grid md:grid-cols-2 gap-8 mb-12 max-w-2xl mx-auto">
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-2">Contact</h4>
+                <p className="text-gray-400">084 748 2489</p>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-white mb-2">Email</h4>
+                <p className="text-gray-400">enquiries@fotu.co.za</p>
+              </div>
             </div>
             
             <div className="border-t border-gray-700 pt-8">
-              <p className="text-gray-500">
-                © {new Date().getFullYear()} F.O.T.U PTY LTD. All rights reserved. "{THEME_CONFIG.logo.tagline}"
+              <p className="text-gray-500 text-lg">
+                © {new Date().getFullYear()} F.O.T.U PTY LTD. All rights reserved.
               </p>
             </div>
           </div>
